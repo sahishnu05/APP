@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='css/cal.css')}}">
+</head>
+<style>
+    /* Custom CSS for styling */
+    .con-box {
+      padding: 20px;
+      background-color: #f8f9fa;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      margin-top: 20px;
+    }
+
+    .input-group {
+      margin-bottom: 15px;
+    }
+
+    .su {
+      width: 100%;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .su:hover {
+      background-color: #0056b3;
+    }
+
+    .form-label {
+      font-weight: bold;
+    }
+    .bl{
+        display: flex;
+        justify-content: space-between;
+        width: 75%;
+    }
+  </style>
+
+<body>
+    <div class="home-section">
+        <header class="header">
+            <nav class="navc">
+                <div class="logo">
+                    <img src="{{url_for('static',filename='images/logo.png')}}" alt="">
+                </div>
+                <ul>
+                    <li class="list"><a href="{{url_for('home')}}" class="link">Home</a></li>
+                    <li class="list"><a href="{{url_for('calculator')}}" class="link">Calculator</a></li>
+                    <li class="list"><a href="{{ url_for('bidsphere') }}" class="link">Bidsphere</a></li>
+                    <li class="list"><a href="{{ url_for('schemes') }}" class="link">Schemes</a></li>
+                    <li class="list"><a href="{{ url_for('engineers') }}" class="link">Engineers</a></li>
+                    <li class="list"><a href="{{ url_for('profile') }}" class="link">MY profile</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <div class="cal-section">
+                <div class="box">
+                    <div class="c-overlay"></div>
+                    <img src="{{url_for('static',filename='images/calculator.jpg')}}" alt="" class="cal-image">
+                </div>
+                <!-- <form action="">
+                <div class="con-box">
+                    <div class="ele">
+                        <div class="container">
+                            <div class="input-group">
+                                <label for="houseType">House Type*</label>
+                                <select id="houseType" name="houseType">
+                                    <option value="basic" selected>basic</option>
+                                    <option value="premium" selected>Premium</option>
+                                </select>
+                            </div>
+
+                            <div class="input-group">
+                                <label for="area">Area*</label>
+                                <input type="number" id="area" name="area" placeholder="Sq.Feet">
+                            </div>
+
+                            <div class="input-group">
+                                <label for="pincode">Pincode*</label>
+                                <input type="text" id="pincode" name="pincode" placeholder="Pincode">
+                            </div>
+                        </div>
+                        <button class='su' type="submit">Calculate Cost</button>
+                    </div>
+                </div>
+            </form> -->
+            <form method="POST">
+                <div class="con-box">
+                    <div class="container">
+
+                    
+                        <div class="bl">
+                            <div class="input-group">
+                            <label for="locationSelect" class="form-label">Select the Location*</label>
+                            <select id="locationSelect" name="locationSelect" class="form-select" required>
+                                <option selected>Select a Location</option>
+                                {% for location in locations %}
+                                    <option value="{{ location }}">{{ location }}</option>
+                                {% endfor %}
+                            </select>
+                            </div>
+                
+                            
+                            <div class="input-group">
+                            <label for="bhkInput" class="form-label">Enter BHK*</label>
+                            <input type="text" class="form-control" id="bhkInput" name="bhk" placeholder="Enter BHK" required>
+                            </div>
+                        </div>
+                    
+                        <div class="bl">
+                            <div class="input-group">
+                            <label for="bathroomsInput" class="form-label">Enter Number of Bathrooms*</label>
+                            <input type="text" class="form-control" id="bathroomsInput" name="bathrooms" placeholder="Enter Number of Bathrooms" required>
+                            </div>
+                
+                        
+                
+                            
+                            <div class="input-group">
+                            <label for="squareFeetInput" class="form-label">Enter Square Feet*</label>
+                            <input type="text" class="form-control" id="squareFeetInput" name="squareFeet" placeholder="Enter Square Feet" required>
+                            </div>
+                        </div>
+                    
+                        <div>
+                            <button class="su" type="submit">Calculate Cost</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            </div>
+
+        </main>
+    </div>
+    <div class="section-2">
+        <div class="material-info">
+            <div class="mat-cont">
+                <h1 class="c-re">Enter details to calculate the approximate cost.</h1>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="box">
+
+        </div>
+    </footer>
+    <script src="{{url_for('static',filename='js/cal.js')}}"></script>
+    <script src="{{url_for('static',filename='js/navbar.js')}}"></script>
+    <script>
+        document.querySelector('form').addEventListener('submit', function (event) {
+            event.preventDefault();
+        
+            const formData = new FormData(this);  
+            fetch('/calculator', {
+                method: 'POST',
+                body: formData,
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    alert(data.error); 
+                } else {
+                    document.querySelector('.c-re').innerHTML = 'Approximate cost required ' + data.prediction;
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        });
+        </script>
+        
+</body>
+
+</html>

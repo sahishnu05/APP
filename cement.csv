@@ -1,0 +1,46 @@
+Material,Application,Strength,Durability,Availability,Cost (per bag),Environmental Impact,Compatibility,Ease of Use,Brand/Supplier,Review,Ratings
+PPC,Foundation,High,High,High,340,Medium,Compatible,Easy,ACC Cement,"""Offers enhanced durability for foundations.""",4.2
+PPC,Walls,High,High,High,340,Medium,Compatible,Easy,UltraTech Cement,"""Suitable for strong and resilient walls.""",4.5
+PPC,Roofing,High,High,High,340,Medium,Compatible,Easy,Ambuja Cement,"""Ensures long-lasting roofing solutions.""",4.1
+PPC,Flooring,High,High,High,340,Medium,Compatible,Easy,Dalmia Cement,"""Recommended for durable and smooth flooring.""",4.3
+PPC,Plastering,High,High,High,340,Medium,Compatible,Easy,Shree Cement,"""Excellent for plastering applications.""",4.0
+Rapid Hardening,Foundation,High,High,High,360,Medium,Compatible,Moderate,ACC Cement,"""Ideal for quick-setting foundations.""",4.2
+Rapid Hardening,Walls,High,High,High,360,Medium,Compatible,Easy,UltraTech Cement,"""Suitable for rapid construction of walls.""",4.4
+Rapid Hardening,Roofing,High,High,High,360,Medium,Compatible,Easy,Ambuja Cement,"""Ensures speedy completion of roofing projects.""",4.1
+Rapid Hardening,Flooring,High,High,High,360,Medium,Compatible,Easy,Dalmia Cement,"""Recommended for quick-setting flooring solutions.""",4.3
+Rapid Hardening,Repairs,High,High,High,360,Medium,Compatible,Easy,JK Cement,"""Perfect for rapid repair works.""",4.5
+Extra Rapid Hardening,Foundation,High,High,High,380,Medium,Compatible,Moderate,ACC Cement,"""Provides exceptionally fast setting for foundations.""",4.0
+Extra Rapid Hardening,Walls,High,High,High,380,Medium,Compatible,Easy,UltraTech Cement,"""Ideal for quick construction of walls.""",4.2
+Extra Rapid Hardening,Roofing,High,High,High,380,Medium,Compatible,Easy,Ambuja Cement,"""Ensures rapid completion of roofing projects.""",4.3
+Extra Rapid Hardening,Flooring,High,High,High,380,Medium,Compatible,Easy,Dalmia Cement,"""Recommended for quick-setting flooring solutions.""",4.5
+Extra Rapid Hardening,Repairs,High,High,High,380,Medium,Compatible,Easy,JK Cement,"""Perfect for rapid repair works.""",4.1
+Quick Setting,Foundation,High,High,High,320,Medium,Compatible,Moderate,ACC Cement,"""Sets rapidly for speedy foundations.""",4.4
+Quick Setting,Walls,High,High,High,320,Medium,Compatible,Easy,UltraTech Cement,"""Ideal for quick construction of walls.""",4.3
+Quick Setting,Roofing,High,High,High,320,Medium,Compatible,Easy,Ambuja Cement,"""Ensures quick completion of roofing projects.""",4.2
+Quick Setting,Flooring,High,High,High,320,Medium,Compatible,Easy,Dalmia Cement,"""Recommended for quick-setting flooring solutions.""",4.0
+Quick Setting,Repairs,High,High,High,320,Medium,Compatible,Easy,JK Cement,"""Perfect for rapid repair works.""",4.5
+Low Heat,Foundation,High,High,High,400,Medium,Compatible,Moderate,ACC Cement,"""Generates less heat during hydration,  ideal for mass concrete.""",4.3
+Low Heat,Walls,High,High,High,400,Medium,Compatible,Easy,UltraTech Cement,"""Suitable for structures where heat build-up is a concern.""",4.0
+Low Heat,Roofing,High,High,High,400,Medium,Compatible,Easy,Ambuja Cement,"""Ensures reduced heat during curing,  suitable for roofing.""",4.2
+Low Heat,Flooring,High,High,High,400,Medium,Compatible,Easy,Dalmia Cement,"""Recommended for flooring where temperature control is crucial.""",4.4
+Low Heat,Mass Concrete,High,High,High,400,Medium,Compatible,Easy,JK Cement,"""Perfect for large-scale concrete projects requiring low heat.""",4.5
+Sulphate Resisting,Foundation,High,High,High,420,Medium,Compatible,Moderate,ACC Cement,"""Resists sulphate attacks,  ideal for foundation in sulfate-rich environments.""",4.2
+Sulphate Resisting,Walls,High,High,High,420,Medium,Compatible,Easy,UltraTech Cement,"""Provides excellent protection against sulfate attack for walls.""",4.1
+Sulphate Resisting,Roofing,High,High,High,420,Medium,Compatible,Easy,Ambuja Cement,"""Ensures durability in areas prone to sulfate exposure,  perfect for roofing.""",4.3
+Sulphate Resisting,Flooring,High,High,High,420,Medium,Compatible,Easy,Dalmia Cement,"""Suitable for flooring in sulfate-rich soil conditions,  offers longevity.""",4.5
+Sulphate Resisting,Plastering,High,High,High,420,Medium,Compatible,Easy,Shree Cement,"""Provides effective protection against sulfate attack in plastering applications.""",4.0
+OPC43,Foundation,High,High,High,380,Medium,Compatible,Moderate,ACC Cement,"""Suitable for high-strength foundations,  ensures durability.""",4.2
+OPC43,Walls,High,High,High,380,Medium,Compatible,Easy,UltraTech Cement,"""Provides strong and resilient walls,  perfect for construction.""",4.4
+OPC43,Roofing,High,High,High,380,Medium,Compatible,Easy,Ambuja Cement,"""Ensures long-lasting roofing solutions with high strength.""",4.1
+OPC43,Flooring,High,High,High,380,Medium,Compatible,Easy,Dalmia Cement,"""Recommended for durable and smooth flooring,  high strength.""",4.3
+OPC43,Plastering,High,High,High,380,Medium,Compatible,Easy,Shree Cement,"""Provides excellent plastering finish with high strength.""",4.5
+OPC53,Foundation,High,High,High,400,Medium,Compatible,Moderate,ACC Cement,"""Ideal for high-strength foundations,  ensures longevity.""",4.0
+OPC53,Walls,High,High,High,400,Medium,Compatible,Easy,UltraTech Cement,"""Provides superior strength for resilient walls,  suitable for construction.""",4.2
+OPC53,Roofing,High,High,High,400,Medium,Compatible,Easy,Ambuja Cement,"""Ensures durable roofing solutions with high strength.""",4.4
+OPC53,Flooring,High,High,High,400,Medium,Compatible,Easy,Dalmia Cement,"""Recommended for high-strength and smooth flooring solutions.""",4.1
+OPC53,Plastering,High,High,High,400,Medium,Compatible,Easy,Shree Cement,"""Provides superior plastering finish with high strength.""",4.3
+OPC33,Foundation,Medium,Medium,High,340,Medium,Compatible,Moderate,ACC Cement,"""Ideal for general-purpose foundation works.""",4.5
+OPC33,Walls,Medium,Medium,High,340,Medium,Compatible,Easy,UltraTech Cement,"""Suitable for standard wall constructions.""",4.0
+OPC33,Roofing,Medium,Medium,High,340,Medium,Compatible,Easy,Ambuja Cement,"""Recommended for basic roofing needs.""",4.2
+OPC33,Flooring,Medium,Medium,High,340,Medium,Compatible,Easy,Dalmia Cement,"""Provides smooth and durable flooring solutions.""",4.4
+OPC33,Plastering,Medium,Medium,High,340,Medium,compatible,Easy,shree cement,"""suitable for plasetring with moderate strength""",4.1

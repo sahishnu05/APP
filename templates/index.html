@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="box">
+        <div class="left">
+            <img src="{{url_for('static',filename='images/logo.png')}}" alt="">
+            <h1>"Building Dreams, One Click at a Time!"</h1>
+            <img src="{{url_for('static',filename='images/Abstraction.png')}}" alt="" id="abstraction">
+        </div>
+        <div class="right">
+            <div class="container">
+                <h1 class="h">Create Account</h1>
+                <form action="" method="post">
+                    <label for="" class="la">Full name</label>
+                    <input type="text" placeholder="Full Name" name="full_name">
+                    <label for="" class="la">Email Address</label>
+                    <input type="email" placeholder="Email Address" name="email">
+                    <label for="" class="la"> Password</label>
+                    <div class="to">
+                        <input type="password" placeholder="Password" name="password" id="password">
+                        <img src="{{url_for('static',filename='images/eye-close.png')}}" alt="" id="eyeicon">
+                    </div>
+                    <label for="" class="la">Phone Number</label>
+                    <input type="tel" placeholder="Phone Number" name="phone_number">
+                    <label for="" class="la">Date of Birth</label>
+                    <input type="date" name="date_of_birth">
+                    <label for="" class="la">Gender</label>
+                    <div class="gender">
+                        <input type="radio" id="male" name="gender" value="male">
+                        <label for="male">Male</label>
+                        <input type="radio" id="female" name="gender" value="female">
+                        <label for="female">Female</label>
+                        <input type="radio" id="other" name="gender" value="other">
+                        <label for="other">Other</label>
+                    </div>
+                    <button type="submit" class="signup-btn">Create Account</button>
+                </form>
+                <p>Already have a account <a href="{{url_for('login')}}">Log in</a></p>
+            </div>
+        </div>
+    </div>
+    <script src="{{url_for('static',filename='js/app.js')}}"></script>
+</body>
+</html>

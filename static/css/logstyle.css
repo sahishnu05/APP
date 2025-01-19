@@ -1,0 +1,132 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+html{
+    font-size: 62.5%;
+}
+.login{
+    text-decoration: none;
+    color: white;
+}
+.box{
+    width:100vw;
+    height:100vh;
+    display:flex;
+}
+.container{
+    width:45%;
+    margin:200px auto;
+}
+.container h1{
+    margin-bottom:3rem;
+    font-size:3rem;
+}
+.container .he{
+    opacity:0.2;
+    text-align: center;
+    font-weight: normal;
+    margin-top: 3rem;
+}
+.left{
+    width:25%;
+    height:100%;
+    background: #E0F1DB;
+    position: relative;
+}
+.left h1{
+    font-size: 2.5rem;
+    margin:1em;
+}
+.left #abstraction{
+    position:absolute;
+    width: 400px;
+    height: 400px;
+    transform: rotate(6.671deg);
+    bottom:0%;
+    right:-25%;
+
+}
+.right{
+    width:75%;
+    background-color:#FFF;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+/* .login{
+    display:flex;
+    gap:5rem;
+}
+.login a{
+    padding:0.5em 1em;
+    font-size:1.5rem;
+    opacity: 0.5;
+    text-decoration: none;
+    border:0.5px solid black;
+    flex:1;
+} */
+.la{
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+form{
+    display:flex;
+    flex-direction: column;
+}
+form input{
+    font-size: 1.5rem;
+    /* border:none; */
+    border:1px solid black;
+    margin:0 0 2rem 0;
+    padding:0.5em 1em 0.5em 0.3em;
+    width:100%;
+    border-bottom: 0.5px solid black;
+    /* outline: 0; */
+}
+.to{
+    display: flex;
+    position: relative;;
+}
+.to img{
+    width:34px;
+    height:24px;
+    position: absolute;
+    right:1em;
+    top:0.5rem;
+}
+form button{
+   padding:0.7em 1em;
+   background-color: black;
+   color:#fff;
+   border-radius: 5px;
+   text-align: center;
+   font-size: 1.5rem;
+   margin-bottom:1rem;
+}
+.container p{
+    font-size: 2rem;
+    margin-top: 1rem;
+}
+.container p a{
+    text-decoration: none;
+    color:#23bcbc;
+}
+#no_account{
+    font-size: 2.5rem;
+    font-weight: normal;
+}
+#no_account a{
+    text-decoration:none;
+    color:#23bcbc;
+}
+#forgot{
+    display: inline-block;
+    margin-top: 0.5rem;
+    text-decoration:underline;
+    
+    font-size: 2rem;
+    opacity:0.5;
+    cursor:pointer;
+}

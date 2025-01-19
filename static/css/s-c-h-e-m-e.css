@@ -1,0 +1,799 @@
+header nav {
+  background-color: #E0F1DB;
+  display: flex;
+  height: 4rem;
+}
+
+header nav .logo {
+  display: flex;
+  width: 110px;
+  height: 4rem;
+  justify-content: flex-start;
+  align-items: center;
+  margin-left: 2em;
+}
+
+.logo img {
+  width: 100%;
+  height: 100%;
+}
+
+.navc {
+  width: 1550px;
+  display: flex;
+  justify-content: space-between;
+}
+
+header nav ul {
+  display: flex;
+  gap: 4rem;
+  justify-content: end;
+  align-items: center;
+  margin-right: 5em;
+
+}
+
+.list {
+  
+  list-style-type: none;
+  text-align: center;
+  position: relative;
+}
+
+
+.link {
+  text-decoration: none;
+  font-size: 1.5rem;
+  color:forestgreen;
+  font-weight: bold;
+  
+}
+.link::after{
+ 
+    content: '';
+    position: absolute;
+    width:0; 
+    height: 3px;
+    display: block;
+    background:forestgreen;
+    transition: width .2s ease;
+  
+}
+.link:hover:after{
+  width: 50%;
+  left: 0;
+  height: 3px;
+}
+.government-housing-schemes,
+.header9 {
+  position: relative;
+  display: inline-block;
+  max-width: 100%;
+}
+.government-housing-schemes {
+  width: 711px;
+}
+.header9 {
+  flex: 1;
+  font-weight: 600;
+  min-width: 496px;
+}
+.frame-child9 {
+  height: 24px;
+  width: 24px;
+  position: relative;
+  border-radius: 50%;
+  background-color: var(--color-yellow);
+  transform: rotate(-89.7deg);
+}
+.frame-child10 {
+  height: 6px;
+  width: 12px;
+  position: absolute;
+  margin: 0 !important;
+  top: 10.1px;
+  left: 6.1px;
+  z-index: 1;
+}
+.ellipse-parent4 {
+  flex-direction: row;
+  padding: 0 var(--padding-12xs) 0 0;
+  box-sizing: border-box;
+  position: relative;
+  gap: var(--gap-3xs);
+  width: 24.1px;
+  height: 24.1px;
+}
+.ellipse-parent4,
+.headliue-and-ico-inner5,
+.headliue-and-ico9 {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.headliue-and-ico-inner5 {
+  flex-direction: column;
+  padding: var(--padding-5xs-4) 0 0;
+}
+.headliue-and-ico9 {
+  flex: 1;
+  flex-direction: row;
+  flex-wrap: wrap;
+  max-width: 100%;
+  row-gap: 20px;
+}
+.accordian-child6,
+.tamil-nadu-housing9 {
+  width: 218px;
+  position: relative;
+  display: none;
+}
+.accordian-child6 {
+  height: 1.1px;
+  object-fit: contain;
+}
+.tamil-nadu-housing9 {
+  align-self: stretch;
+  font-size: var(--font-size-xs);
+  font-weight: 500;
+}
+.accordian-frame,
+.accordian11 {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  max-width: 100%;
+}
+.accordian11 {
+  width: 819px;
+  border-radius: var(--br-xl);
+  background-color: var(--color-pink);
+  justify-content: flex-start;
+  padding: var(--padding-base);
+  box-sizing: border-box;
+  gap: var(--gap-mini);
+}
+.accordian-frame {
+  align-self: stretch;
+  justify-content: flex-end;
+  font-size: var(--font-size-13xl);
+  color: var(--color-black);
+  font-family: var(--font-inter);
+}
+.government-housing-schemes-in-parent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 21px;
+  max-width: 100%;
+}
+.frame-wrapper {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: 0 3px 0 0;
+  box-sizing: border-box;
+  max-width: 100%;
+  font-size: 36px;
+  color: #d2d2d2;
+  font-family: var(--font-telegraf);
+}
+.header10 {
+  flex: 1;
+  position: relative;
+  font-size: var(--font-size-13xl);
+  display: inline-block;
+  font-weight: 600;
+  font-family: var(--font-inter);
+  color: var(--color-black);
+  text-align: left;
+  min-width: 420px;
+  max-width: 100%;
+}
+.frame-child11 {
+  height: 24px;
+  width: 24px;
+  position: relative;
+  border-radius: 50%;
+  background-color: var(--color-yellow);
+  transform: rotate(-89.7deg);
+}
+.frame-child12 {
+  height: 6px;
+  width: 12px;
+  position: absolute;
+  margin: 0 !important;
+  top: 10.1px;
+  left: 6.1px;
+  z-index: 1;
+}
+.ellipse-parent5 {
+  flex-direction: row;
+  padding: 0 var(--padding-12xs) 0 0;
+  box-sizing: border-box;
+  position: relative;
+  gap: var(--gap-3xs);
+  width: 24.1px;
+  height: 24.1px;
+}
+.ellipse-parent5,
+.headliue-and-ico-inner6,
+.headliue-and-ico10 {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.headliue-and-ico-inner6 {
+  flex-direction: column;
+  padding: var(--padding-5xs-4) 0 0;
+}
+.headliue-and-ico10 {
+  flex: 1;
+  flex-direction: row;
+  flex-wrap: wrap;
+  max-width: 100%;
+  row-gap: 20px;
+}
+.accordian-child7,
+.tamil-nadu-housing10 {
+  width: 218px;
+  position: relative;
+  display: none;
+}
+.accordian-child7 {
+  height: 1.1px;
+  object-fit: contain;
+}
+.tamil-nadu-housing10 {
+  align-self: stretch;
+  font-size: var(--font-size-xs);
+  font-weight: 500;
+  font-family: var(--font-inter);
+  color: var(--color-black);
+  text-align: left;
+}
+.accordian12 {
+  cursor: pointer;
+  border: 0;
+  padding: var(--padding-base);
+  background-color: var(--color-lightgreen);
+  width: 819px;
+  border-radius: var(--br-xl);
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  box-sizing: border-box;
+  gap: var(--gap-mini);
+  max-width: 100%;
+}
+.header11 {
+  flex: 1;
+  position: relative;
+  display: inline-block;
+  font-weight: 600;
+  min-width: 488px;
+  max-width: 100%;
+}
+.frame-child13 {
+  height: 24px;
+  width: 24px;
+  position: relative;
+  border-radius: 50%;
+  background-color: var(--color-yellow);
+  transform: rotate(-89.7deg);
+}
+.frame-child14 {
+  height: 6px;
+  width: 12px;
+  position: absolute;
+  margin: 0 !important;
+  top: 10.1px;
+  left: 6.1px;
+  z-index: 1;
+}
+.ellipse-parent6 {
+  flex-direction: row;
+  padding: 0 var(--padding-12xs) 0 0;
+  box-sizing: border-box;
+  position: relative;
+  gap: var(--gap-3xs);
+  width: 24.1px;
+  height: 24.1px;
+}
+.ellipse-parent6,
+.headliue-and-ico-inner7,
+.headliue-and-ico11 {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.headliue-and-ico-inner7 {
+  flex-direction: column;
+  padding: var(--padding-5xs-4) 0 0;
+}
+.headliue-and-ico11 {
+  flex: 1;
+  flex-direction: row;
+  flex-wrap: wrap;
+  max-width: 100%;
+  row-gap: 20px;
+}
+.accordian-child8,
+.tamil-nadu-housing11 {
+  width: 218px;
+  position: relative;
+  display: none;
+}
+.accordian-child8 {
+  height: 1.1px;
+  object-fit: contain;
+}
+.tamil-nadu-housing11 {
+  align-self: stretch;
+  font-size: var(--font-size-xs);
+  font-weight: 500;
+}
+.accordian13 {
+  width: 819px;
+  border-radius: var(--br-xl);
+  background-color: var(--color-lightsteelblue);
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: var(--padding-base);
+  box-sizing: border-box;
+  gap: var(--gap-mini);
+  max-width: 100%;
+}
+.header12 {
+  flex: 1;
+  position: relative;
+  font-size: var(--font-size-13xl);
+  display: inline-block;
+  font-weight: 700;
+  font-family: var(--font-inter);
+  color: var(--color-black);
+  text-align: left;
+  min-width: 457px;
+  max-width: 100%;
+}
+.frame-child15 {
+  height: 24px;
+  width: 24px;
+  position: relative;
+  border-radius: 50%;
+  background-color: var(--color-yellow);
+  transform: rotate(-89.7deg);
+}
+.frame-child16 {
+  height: 6px;
+  width: 12px;
+  position: absolute;
+  margin: 0 !important;
+  top: 10.1px;
+  left: 6.1px;
+  z-index: 1;
+}
+.ellipse-parent7 {
+  flex-direction: row;
+  padding: 0 var(--padding-12xs) 0 0;
+  box-sizing: border-box;
+  position: relative;
+  gap: var(--gap-3xs);
+  width: 24.1px;
+  height: 24.1px;
+}
+.ellipse-parent7,
+.headliue-and-ico-inner8,
+.headliue-and-ico12 {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.headliue-and-ico-inner8 {
+  flex-direction: column;
+  padding: var(--padding-5xs-4) 0 0;
+}
+.headliue-and-ico12 {
+  flex: 1;
+  flex-direction: row;
+  flex-wrap: wrap;
+  max-width: 100%;
+  row-gap: 20px;
+}
+.accordian-child9,
+.tamil-nadu-housing12 {
+  width: 218px;
+  position: relative;
+  display: none;
+}
+.accordian-child9 {
+  height: 1.1px;
+  object-fit: contain;
+}
+.tamil-nadu-housing12 {
+  align-self: stretch;
+  font-size: var(--font-size-xs);
+  font-weight: 500;
+  font-family: var(--font-inter);
+  color: var(--color-black);
+  text-align: left;
+}
+.accordian14 {
+  cursor: pointer;
+  border: 0;
+  padding: var(--padding-base);
+  background-color: var(--color-pink);
+  width: 819px;
+  border-radius: var(--br-xl);
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  box-sizing: border-box;
+  gap: var(--gap-mini);
+  max-width: 100%;
+}
+.header13 {
+  flex: 1;
+  position: relative;
+  font-size: var(--font-size-13xl);
+  display: inline-block;
+  font-weight: 700;
+  font-family: var(--font-inter);
+  color: var(--color-black);
+  text-align: left;
+  min-width: 496px;
+  max-width: 100%;
+}
+.frame-child17 {
+  height: 24px;
+  width: 24px;
+  position: relative;
+  border-radius: 50%;
+  background-color: var(--color-yellow);
+  transform: rotate(-89.7deg);
+}
+.frame-child18 {
+  height: 6px;
+  width: 12px;
+  position: absolute;
+  margin: 0 !important;
+  top: 10.1px;
+  left: 6.1px;
+  z-index: 1;
+}
+.ellipse-parent8 {
+  flex-direction: row;
+  padding: 0 var(--padding-12xs) 0 0;
+  box-sizing: border-box;
+  position: relative;
+  gap: var(--gap-3xs);
+  width: 24.1px;
+  height: 24.1px;
+}
+.ellipse-parent8,
+.headliue-and-ico-inner9,
+.headliue-and-ico13 {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.headliue-and-ico-inner9 {
+  flex-direction: column;
+  padding: var(--padding-5xs-4) 0 0;
+}
+.headliue-and-ico13 {
+  flex: 1;
+  flex-direction: row;
+  flex-wrap: wrap;
+  max-width: 100%;
+  row-gap: 20px;
+}
+.accordian-child10,
+.tamil-nadu-housing13 {
+  width: 218px;
+  position: relative;
+  display: none;
+}
+.accordian-child10 {
+  height: 1.1px;
+  object-fit: contain;
+}
+.tamil-nadu-housing13 {
+  align-self: stretch;
+  font-size: var(--font-size-xs);
+  font-weight: 500;
+  font-family: var(--font-inter);
+  color: var(--color-black);
+  text-align: left;
+}
+.accordian15,
+.line-div {
+  position: absolute;
+  box-sizing: border-box;
+}
+.accordian15 {
+  top: 0;
+  left: 0;
+  border-radius: var(--br-xl);
+  background-color: var(--color-lightgreen);
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: var(--padding-base);
+  gap: var(--gap-mini);
+  max-width: 100%;
+  height: 100%;
+}
+.line-div {
+  top: 41px;
+  left: 325px;
+  border-right: 1px solid var(--color-white);
+  width: 1px;
+  height: 5px;
+  z-index: 1;
+}
+.frame-button,
+.header14 {
+  position: relative;
+  max-width: 100%;
+}
+.frame-button {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  width: 819px;
+  height: 71px;
+}
+.header14 {
+  flex: 1;
+  display: inline-block;
+  font-weight: 700;
+  min-width: 452px;
+}
+.frame-child19 {
+  height: 24px;
+  width: 24px;
+  position: relative;
+  border-radius: 50%;
+  background-color: var(--color-yellow);
+  transform: rotate(-89.7deg);
+}
+.frame-child20 {
+  height: 6px;
+  width: 12px;
+  position: absolute;
+  margin: 0 !important;
+  top: 10.1px;
+  left: 6.1px;
+  z-index: 1;
+}
+.ellipse-parent9 {
+  flex-direction: row;
+  padding: 0 var(--padding-12xs) 0 0;
+  box-sizing: border-box;
+  position: relative;
+  gap: var(--gap-3xs);
+  width: 24.1px;
+  height: 24.1px;
+}
+.ellipse-parent9,
+.headliue-and-ico-inner10,
+.headliue-and-ico14 {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.headliue-and-ico-inner10 {
+  flex-direction: column;
+  padding: var(--padding-5xs-4) 0 0;
+}
+.headliue-and-ico14 {
+  flex: 1;
+  flex-direction: row;
+  flex-wrap: wrap;
+  max-width: 100%;
+  row-gap: 20px;
+}
+.accordian-child11,
+.tamil-nadu-housing14 {
+  width: 218px;
+  position: relative;
+  display: none;
+}
+.accordian-child11 {
+  height: 1.1px;
+  object-fit: contain;
+}
+.tamil-nadu-housing14 {
+  align-self: stretch;
+  font-size: var(--font-size-xs);
+  font-weight: 500;
+}
+.accordian16 {
+  width: 819px;
+  border-radius: var(--br-xl);
+  background-color: var(--color-lightsteelblue);
+  flex-direction: row;
+  align-items: flex-start;
+  padding: var(--padding-base);
+  box-sizing: border-box;
+  gap: var(--gap-mini);
+  max-width: 100%;
+}
+.accordian16,
+.frame-parent1,
+.scheme,
+.scheme-inner {
+  display: flex;
+  justify-content: flex-start;
+}
+.frame-parent1 {
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 115.6px;
+  max-width: 100%;
+}
+.scheme,
+.scheme-inner {
+  align-items: flex-start;
+  box-sizing: border-box;
+}
+.scheme-inner {
+  width: 1021px;
+  flex-direction: row;
+  padding: 0 44px;
+  max-width: 100%;
+  text-align: left;
+  font-size: var(--font-size-13xl);
+  color: var(--color-black);
+  font-family: var(--font-inter);
+}
+.scheme {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  flex-direction: column;
+  padding: 0 0 200px;
+  gap: 44px;
+  background-image: url(./public/scheme@3x.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top;
+  line-height: normal;
+  letter-spacing: normal;
+}
+@media screen and (max-width: 1425px) {
+  .menu4 {
+    display: none;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .menu4 {
+    display: none;
+  }
+  .frame-parent1 {
+    gap: 58px;
+  }
+  .scheme-inner {
+    padding-left: var(--padding-3xl);
+    padding-right: var(--padding-3xl);
+    box-sizing: border-box;
+  }
+}
+@media screen and (max-width: 825px) {
+  .menu4 {
+    display: none;
+  }
+  .government-housing-schemes {
+    font-size: var(--font-size-10xl);
+  }
+  .header10,
+  .header11,
+  .header12,
+  .header13,
+  .header9 {
+    font-size: var(--font-size-7xl);
+    min-width: 100%;
+  }
+  .frame-button {
+    height: auto;
+    min-height: 71;
+  }
+  .header14 {
+    font-size: var(--font-size-7xl);
+    min-width: 100%;
+  }
+  .frame-parent1 {
+    gap: 29px;
+  }
+  .scheme {
+    gap: 22px;
+  }
+}
+@media screen and (max-width: 450px) {
+  .menu4 {
+    display: none;
+  }
+  .government-housing-schemes {
+    font-size: 22px;
+  }
+  .header10,
+  .header11,
+  .header12,
+  .header13,
+  .header14,
+  .header9 {
+    font-size: var(--font-size-lgi);
+  }
+  /* Add this CSS to your existing styles */
+.accordian-frame {
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+  max-height: 0;
+}
+
+.accordian-frame.active {
+  max-height: 500px; /* Adjust the maximum height as needed */
+}
+
+.accordian-frame .accordian-child6 {
+  display: none;
+}
+
+.accordian-frame.active .accordian-child6 {
+  display: block;
+}
+
+.accordian12 .accordian-child7 {
+  display: none;
+}
+
+.accordian12.active .accordian-child7 {
+  display: block;
+}
+
+.accordian13 .accordian-child8 {
+  display: none;
+}
+
+.accordian13.active .accordian-child8 {
+  display: block;
+}
+
+.accordian14 .accordian-child9 {
+  display: none;
+}
+
+.accordian14.active .accordian-child9 {
+  display: block;
+}
+
+.frame-button .accordian-child10 {
+  display: none;
+}
+
+.frame-button.active .accordian-child10 {
+  display: block;
+}
+
+.accordian16 .accordian-child11 {
+  display: none;
+}
+
+.accordian16.active .accordian-child11 {
+  display: block;
+}
+
+}

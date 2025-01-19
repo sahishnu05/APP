@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/homecss.css') }}">
+</head>
+
+<body>
+    <div class="home-section">
+        <header class="header">
+            <nav class="navc">
+                <div class="logo">
+                    <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo">
+                </div>
+                <ul>
+                    <li class="list"><a href="{{ url_for('home') }}" class="link">Home</a></li>
+                    <li class="list"><a href="{{ url_for('calculator') }}" class="link">Calculator</a></li>
+                    <li class="list"><a href="{{ url_for('bidsphere') }}" class="link">Bidsphere</a></li>
+                    <li class="list"><a href="{{ url_for('schemes') }}" class="link">Schemes</a></li>
+                    <li class="list"><a href="{{ url_for('engineers') }}" class="link">Engineers</a></li>
+                    <li class="list"><a href="{{ url_for('profile') }}" class="link">My Profile</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <img class="bac-image" src="{{ url_for('static', filename='images/train.jpg') }}" alt="Train Image">
+            <div class="overlay"></div>
+            <div class="content">
+                <div class="h-title">
+                    <h4>Cost-craft</h4>
+                </div>
+                <div class="catchy-line">
+                    <h1>Build smarter, bid better</h1>
+                </div>
+                <div class="abstract">
+                    <p>"At CostCraft, we predict construction costs with precision and empower users to reduce expenses
+                        through strategic bidding. Join us in revolutionizing construction economics and building
+                        smarter projects."</p>
+                </div>
+            </div>
+        </main>
+
+        <section class="materials">
+            <div class="cont-m">
+                <h1 class="h-head">"Wanna find material for your dream house, User?</h1>
+                <div class="date-cont">
+                    <div class="dateItemBox d">
+                        <div class="d_circle"></div>
+                        <div class="d_info">
+                            <p class="d_da">Cement, Steel, and Tiles</p>
+                            <p class="dc_info"><a href="https://www.buildersmart.in/" target="_blank">Click here</a></p>
+                        </div>
+                    </div>
+                    <div class="dateItemBox d">
+                        <div class="d_circle"></div>
+                        <div class="d_info">
+                            <p class="d_da">For Hardware Products</p>
+                            <p class="dc_info"><a href="https://www.thesolvere.life/" target="_blank">Click here</a></p>
+                        </div>
+                    </div>
+                    <div class="dateItemBox d">
+                        <div class="d_circle"></div>
+                        <div class="d_info">
+                            <p class="d_da">For Paintings and Coatings</p>
+                            <p class="dc_info"><a href="https://www.constrobazaar.com/" target="_blank">Click here</a></p>
+                        </div>
+                    </div>
+                    <div class="dateItemBox d">
+                        <div class="d_circle"></div>
+                        <div class="d_info">
+                            <p class="d_da">Plumbing and electrics</p>
+                            <p class="dc_info"><a href="https://builders9.com/" target="_blank">Click here</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="sec-3">
+            <div class="mat-flex">
+                <h1>Dataframe Output</h1>
+                    {% for table in tables %}
+                        {{ table|safe }}
+                    {% endfor %}
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="box"></div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='jss/navbar.js') }}"></script>
+</body>
+
+</html>

@@ -1,0 +1,436 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+}
+body{
+    background-color: rgb(126, 251, 232);
+}
+.home-section {
+    height: 200vh;
+}
+
+header nav {
+    background-color: #E0F1DB;
+    display: flex;
+    height: 6rem;
+}
+
+header nav .logo {
+    display: flex;
+    width: 110px;
+    height: 6rem;
+    /* justify-content: flex-start; */
+    align-items: center;
+    margin-left: 2em;
+}
+
+.logo img {
+    width: 100%;
+    height: 100%;
+}
+
+.navc {
+    display: flex;
+    justify-content: space-between;
+}
+
+header nav ul {
+    display: flex;
+    gap: 4rem;
+    justify-content: end;
+    align-items: center;
+    margin-right: 5em;
+
+}
+
+.list {
+    
+    list-style-type: none;
+    text-align: center;
+    position: relative;
+}
+
+
+.link {
+    text-decoration: none;
+    font-size: 2.5rem;
+    color:forestgreen;
+    font-weight: bold;
+    
+}
+.link::after{
+   
+      content: '';
+      position: absolute;
+      width:0; 
+      height: 3px;
+      display: block;
+      background:forestgreen;
+      transition: width .2s ease;
+    
+}
+.link:hover:after{
+    width: 50%;
+    left: 0;
+    height: 3px;
+}
+
+.search-for-engineers {
+    position: absolute;
+    top: 35px;
+    left: 400px;
+    display: inline-block;
+    font-family: Yaldevi;
+    color: #fff;
+    width: 900px;
+    height: 66px;
+}
+.name {
+    position: relative;
+    line-height: 24px;
+}
+.frame {
+    position: absolute;
+    width: 100%;
+    top: 24px;
+    right: 0%;
+    left: 0%;
+    border-radius: 5px;
+    background-color: #fff;
+    border: 1px solid #383434;
+    box-sizing: border-box;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 10px 15px;
+}
+.ob-forms {
+    width: 818px;
+    position: relative;
+    height: 80px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+.ob-forms-wrapper {
+    position: absolute;
+    top: 92px;
+    left: 368px;
+    width: 836px;
+    height: 121px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: 12px;
+    color: #d2d2d2;
+}
+.frame-child {
+    position: absolute;
+    top: 152px;
+    left: 322px;
+    width: 10px;
+    height: 16px;
+    object-fit: contain;
+}
+.frame-item {
+    width: 30px;
+    position: relative;
+    height: 20px;
+    object-fit: contain;
+}
+.sort-by-parent {
+    position: absolute;
+    top: 128.5px;
+    left: 1200px;
+    background-color: #d9d9d9;
+    border: 1px solid #000;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 9px 10px;
+    font-size: 26px;
+}
+.frame-inner {
+    position: absolute;
+    top: 298px;
+    left: 350px;
+    border-radius: 30px;
+    background-color: rgba(183, 235, 247, 0.72);
+    width: 951px;
+    height: 117px;
+    overflow: hidden;
+}
+.click-here-to {
+    position: relative;
+}
+.click-here-to-join-wrapper {
+    position: absolute;
+    top: 490px;
+    left: 600px;
+    background-color: #ffe482;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    font-family: Quicksand;
+}
+.we-are-hiring {
+    position: relative;
+    letter-spacing: 0.04em;
+    line-height: 24px;
+}
+.we-are-hiring-join-us-wrapper {
+    position: absolute;
+    top: 338px;
+    left: 350px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    text-align: center;
+    font-size: 64px;
+}
+.search-for-engineers-to-find-t-parent {
+    width: 100%;
+    position: relative;
+    background-color: rgba(42, 38, 85, 0.79);
+    height: 588px;
+    overflow: hidden;
+    text-align: left;
+    font-size: 35px;
+    color: #000;
+    font-family: Telegraf;
+}
+
+.ellipse-icon {
+    width: 131px;
+    position: relative;
+    border-radius: 50%;
+    max-width: 100%;
+    overflow: hidden;
+    height: 145px;
+    left: 250px;
+    top: 60px;
+    object-fit: cover;
+    z-index: 1;
+}
+.namexxxxx {
+    position: absolute;
+    top: 14px;
+    left: 4px;
+    display: inline-block;
+    width: 197px;
+    height: 15px;
+}
+.frame-child {
+    position: absolute;
+    top: 37px;
+    left: 4px;
+    width: 207px;
+    height: 68px;
+    overflow: hidden;
+}
+.namexxxxx-parent {
+    position: absolute;
+    top: 61px;
+    left: 41px;
+    width: 186px;
+    height: 37px;
+    overflow: hidden;
+}
+.exp-xx-years {
+    position: absolute;
+    top: 123px;
+    left: 45px;
+    display: inline-block;
+    width: 207px;
+    height: 43px;
+}
+.placexxxxx {
+    position: absolute;
+    top: 0px;
+    left: 6px;
+    display: inline-block;
+    width: 160px;
+    height: 33px;
+}
+.placexxxxx-wrapper {
+    position: absolute;
+    top: 179px;
+    left: 40px;
+    width: 169px;
+    height: 33px;
+    overflow: hidden;
+}
+.view-more {
+    position: absolute;
+    top: 9px;
+    left: 0px;
+    text-decoration: underline;
+    display: inline-block;
+    width: 132px;
+    height: 35px;
+}
+.view-more-wrapper {
+    position: absolute;
+    top: 245px;
+    left: 61px;
+    width: 121px;
+    height: 36px;
+    overflow: hidden;
+    font-size: 20px;
+    color: #235d65;
+}
+.frame-parent{
+    width: 243px;
+    height: 305px;
+    position: absolute;
+    border-radius: 20px;
+    background-color: #fff;
+    left: 190px;
+    overflow: hidden;
+    text-align: left;
+    font-size: 24px;
+    color: #000;
+    font-family: Inter;
+}
+.ellipse-icon1 {
+    width: 131px;
+    position: relative;
+    border-radius: 50%;
+    max-width: 100%;
+    overflow: hidden;
+    height: 145px;
+    left: 600px;
+    top: 60px;
+    object-fit: cover;
+    z-index: 1;
+}
+.frame-parent1{
+    width: 243px;
+    height: 305px;
+    position: absolute;
+    border-radius: 20px;
+    background-color: #fff;
+    left: 670px;
+    overflow: hidden;
+    text-align: left;
+    font-size: 24px;
+    color: #000;
+    font-family: Inter;
+}
+.ellipse-icon2 {
+    width: 131px;
+    position: relative;
+    border-radius: 50%;
+    max-width: 100%;
+    overflow: hidden;
+    height: 145px;
+    left: 920px;
+    top: 60px;
+    object-fit: cover;
+    z-index: 1;
+}
+.frame-parent2{
+    width: 243px;
+    height: 305px;
+    position: absolute;
+    border-radius: 20px;
+    background-color: #fff;
+    left: 1125px;
+    overflow: hidden;
+    text-align: left;
+    font-size: 24px;
+    color: #000;
+    font-family: Inter;
+}
+.ellipse-icon3 {
+    width: 131px;
+    position: absolute;
+    border-radius: 50%;
+    max-width: 100%;
+    overflow: hidden;
+    height: 145px;
+    left: 250px;
+    top: 1175px;
+    object-fit: cover;
+    z-index: 1;
+}
+.frame-parent3{
+    width: 243px;
+    height: 305px;
+    position: absolute;
+    border-radius: 20px;
+    background-color: #fff;
+    left: 192px;
+    overflow: hidden;
+    text-align: left;
+    font-size: 24px;
+    color: #000;
+    font-family: Inter;
+    top: 1270px;
+}
+.ellipse-icon4 {
+    width: 131px;
+    position: absolute;
+    border-radius: 50%;
+    max-width: 100%;
+    overflow: hidden;
+    height: 145px;
+    left: 735px;
+    top: 1175px;
+    object-fit: cover;
+    z-index: 1;
+}
+.frame-parent4{
+    width: 243px;
+    height: 305px;
+    position: absolute;
+    border-radius: 20px;
+    background-color: #fff;
+    left: 668px;
+    overflow: hidden;
+    text-align: left;
+    font-size: 24px;
+    color: #000;
+    font-family: Inter;
+    top: 1270px;
+}
+.ellipse-icon5{
+    width: 131px;
+    position: absolute;
+    border-radius: 50%;
+    max-width: 100%;
+    overflow: hidden;
+    height: 145px;
+    left: 1185px;
+    top: 1175px;
+    object-fit: cover;
+    z-index: 1;
+}
+.frame-parent5{
+    width: 243px;
+    height: 305px;
+    position: absolute;
+    border-radius: 20px;
+    background-color: #fff;
+    left: 1125px;
+    overflow: hidden;
+    text-align: left;
+    font-size: 24px;
+    color: #000;
+    font-family: Inter;
+    top: 1270px;
+}
+
