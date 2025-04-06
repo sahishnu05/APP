@@ -10,65 +10,119 @@
 
 <body>
     <header class="header">
-        <nav class="navc">
-            <div class="logo">
-                <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo">
-            </div>
-            <ul>
-                <li class="list"><a href="{{ url_for('home') }}" class="link">Home</a></li>
-                <li class="list"><a href="{{ url_for('calculator') }}" class="link">Calculator</a></li>
-                <li class="list"><a href="{{ url_for('bidsphere') }}" class="link">Bidsphere</a></li>
-                <li class="list"><a href="{{ url_for('schemes') }}" class="link">Schemes</a></li>
-                <li class="list"><a href="{{ url_for('engineers') }}" class="link">Engineers</a></li>
-                <li class="list"><a href="{{ url_for('profile') }}" class="link">MY profile</a></li>
-            </ul>
+        <nav class="navigation">
+          <div class="logo">
+            <img src="{{url_for('static',filename='public/6569d003ebc8904744f138c8-aiicon-removebg-preview 1.png')}}" alt="BuildDream Logo">
+          </div>
+          <ul class="nav-links">
+            <li class="list"><a href="{{ url_for('home', user_id=user['_id']) }}" class="link">Home</a></li>
+            <li class="list"><a href="{{ url_for('calculator', user_id=user['_id']) }}" class="link">Calculator</a></li>
+            <li class="list"><a href="{{ url_for('bidsphere', user_id=user['_id']) }}" class="link">Bidsphere</a></li>
+            <li class="list"><a href="{{ url_for('engineerlist', project_id=project['_id'], user_id=user['_id']) }}" class="link">Engineers</a></li>
+            <li class="list"><a href="{{ url_for('schemes', user_id=user['_id']) }}" class="link">Schemes</a></li>
+            <li class="list"><a href="{{ url_for('profile', user_id=user['_id']) }}" class="link">My Profile</a></li>
+          </ul>
+          <button class="menu-toggle">
+            <i class="fas fa-bars"></i>
+          </button>
         </nav>
-    </header>
-    <main>
+      </header>
+      <main>
         <div class="content">
-            <form action="{{ url_for('bidsphere') }}" method="POST" enctype="multipart/form-data">
-                <div class="price">
-                    <label for="estimated_price" class="la">Estimated Price</label>
-                    <input type="text" id="estimated_price" name="estimated_price" class="in" required>
+            <form action="{{ url_for('bidsphere',user_id=user['_id']) }}" method="POST" enctype="multipart/form-data">
+                <div class="form-title">
+                    <h2>BidSphere</h2>
+                    <p>Submit your property details to start receiving bids</p>
                 </div>
-                <div class="area">
-                    <label for="area" class="la">Area of land (sqr mtr)</label>
-                    <input type="text" id="area" name="area" class="in" required>
+                
+                <div class="input-group">
+                    <label for="estimated_price" class="la required">Estimated Price</label>
+                    <input type="text" id="estimated_price" name="estimated_price" class="in" required placeholder="Enter estimated price (USD)">
                 </div>
-                <div class="pro">
-                    <label for="property_document" class="la fileLabel">Property Document</label>
-                    <input type="file" id="property_document" name="property_document" class="fileInput" accept=".pdf" onchange="updatePlaceholder()" required>
+                
+                <div class="input-group">
+                    <label for="area" class="la required">Area of Land</label>
+                    <input type="text" id="area" name="area" class="in" required placeholder="Enter area in square meters">
                 </div>
-                <div class="plan">
-                    <label for="plan_proposal" class="la fileLabel">Plan Proposal (optional)</label>
-                    <input type="file" id="plan_proposal" name="plan_proposal" class="fileInput" accept=".pdf" onchange="updatePlaceholder()">
+                <div class="input-group">
+                    <label for="district" class="la required">Select District</label>
+                    <select id="district" name="district" class="in" required>
+                        <option value="" disabled selected>Choose a district</option>
+                        <option value="chennai">Chennai</option>
+                        <option value="coimbatore">Coimbatore</option>
+                        <option value="madurai">Madurai</option>
+                        <option value="tiruchirapalli">Tiruchirapalli</option>
+                        <option value="salem">Salem</option>
+                        <option value="vellore">Vellore</option>
+                        <option value="erode">Erode</option>
+                        <option value="thanjavur">Thanjavur</option>
+                        <option value="tirunelveli">Tirunelveli</option>
+                        <option value="kancheepuram">Kancheepuram</option>
+                    </select>
                 </div>
-                <div class="instr">
+                
+                <div class="input-group">
+                    <label for="property_document" class="la required">Property Document</label>
+                    <div class="file-input-container">
+                        <label for="property_document" class="file-input-label">
+                            <i class="fas fa-upload"></i> Choose PDF file
+                        </label>
+                        <input type="file" id="property_document" name="property_document" class="fileInput" accept=".pdf" onchange="updateFileName(this, 'property-file-name')" required>
+                        <div id="property-file-name" class="file-name">No file chosen</div>
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <label for="plan_proposal" class="la">Plan Proposal (optional)</label>
+                    <div class="file-input-container">
+                        <label for="plan_proposal" class="file-input-label">
+                            <i class="fas fa-upload"></i> Choose PDF file
+                        </label>
+                        <input type="file" id="plan_proposal" name="plan_proposal" class="fileInput" accept=".pdf" onchange="updateFileName(this, 'plan-file-name')">
+                        <div id="plan-file-name" class="file-name">No file chosen</div>
+                    </div>
+                </div>
+                
+                <div class="input-group">
                     <label for="instructions" class="la">Instructions (Optional)</label>
-                    <textarea id="instructions" name="instructions" cols="30" rows="4"></textarea>
+                    <textarea id="instructions" name="instructions" placeholder="Enter any specific instructions or details about your property"></textarea>
                 </div>
+                
                 <div class="but">
-                    <button type="submit">Start Bidding</button>
+                    <button onclick="setGlobalVariable()" type="submit">Start Bidding</button>
                 </div>
             </form>
         </div>
     </main>
     <footer>
         <div class="box">
+            <p>&copy; 2025 BidSphere - All Rights Reserved</p>
         </div>
     </footer>
     <script src="{{ url_for('static', filename='static/js/navbar.js') }}"></script>
     <script>
-        function updatePlaceholder() {
-            const fileInputs = document.querySelectorAll('.fileInput');
-            fileInputs.forEach(input => {
-                const fileLabel = input.previousElementSibling;
-                if (input.files.length > 0) {
-                    fileLabel.textContent = input.files[0].name;
-                } else {
-                    fileLabel.textContent = fileLabel.getAttribute('data-default');
-                }
-            });
+         function updateFileName(input, elementId) {
+            const fileName = input.files[0] ? input.files[0].name : 'No file chosen';
+            document.getElementById(elementId).textContent = fileName;
+        }
+        function setGlobalVariable() {
+            localStorage.setItem("globalVar",true);
+            console.log(localStorage.getItem("globalVar"));
+         
+        }
+        let globalVar = localStorage.getItem("globalVar");
+
+      
+        let contentDiv = document.getElementById("c_r");
+
+        // Dynamically set links based on globalVar, user_id, and project_id
+        const projectId = "{{ project['_id'] }}"; // Pass project ID dynamically from Flask
+        const userId = "{{ user['_id'] }}";
+
+        if (globalVar === "true") {
+            contentDiv.innerHTML = `<a href="{{ url_for('engineerlist', user_id=user['_id'], project_id=project['_id']) }}" class="link">Engineers</a>`;
+        } else {
+            contentDiv.innerHTML = `<a href="{{ url_for('bidsphere', user_id=user['_id']) }}" class="link">Bidsphere</a>`;
         }
     </script>
 </body>

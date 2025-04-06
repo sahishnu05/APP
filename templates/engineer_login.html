@@ -1,0 +1,420 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Engineer Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Engineer Login</h1>
+        {% if error %}
+        <div class="error-message">
+            {{ error }}
+        </div>
+        {% endif %}
+        <form action="{{ url_for('login_engineer') }}" method="POST">
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit" class="btn">Login</button>
+        </form>
+        <div class="links">
+            <a href="{{ url_for('register_engineer') }}">Don't have an account? Register as Engineer</a><br>
+            <a href="{{ url_for('login_user') }}">Login as a User</a>
+        </div>
+    </div>
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Engineer Login</title>
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #333;
+        }
+
+        /* Container Styles */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            height: 600px;
+            display: flex;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        /* Left Section - Image & Branding */
+        .login-image {
+            flex: 1;
+            background: url('https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80') center/cover;
+            position: relative;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .login-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(13, 36, 77, 0.7);
+        }
+
+        .brand {
+            position: relative;
+            z-index: 1;
+        }
+
+        .brand h1 {
+            color: white;
+            font-size: 28px;
+            font-weight: 600;
+        }
+
+        .brand span {
+            display: block;
+            font-size: 16px;
+            color: #b0c6ff;
+            margin-top: 5px;
+        }
+
+        .illustration {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .illustration h2 {
+            color: white;
+            font-size: 32px;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+
+        .illustration p {
+            color: #d0ddff;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        /* Right Section - Login Form */
+        .login-form {
+            flex: 1;
+            background: white;
+            padding: 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .login-form h2 {
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 40px;
+            color: #1e3c72;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #666;
+            font-weight: 500;
+        }
+
+        .input-group {
+            position: relative;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: border 0.3s;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: #2a5298;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #888;
+            background: none;
+            border: none;
+            font-size: 16px;
+        }
+
+        .btn {
+            margin-top: 20px;
+            padding: 16px;
+            border: none;
+            border-radius: 6px;
+            background: linear-gradient(to right, #1e3c72, #2a5298);
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn:hover {
+            background: linear-gradient(to right, #15325e, #1e4180);
+            box-shadow: 0 5px 15px rgba(42, 82, 152, 0.3);
+        }
+
+        .r_btn {
+            padding-left: 0.9em;
+            padding-right: 0.9em;
+            background: linear-gradient(to right, #1e3c72, #2a5298);
+            color: white;
+            padding-top: 0.5em;
+            padding-bottom: 0.5em;
+            border-radius: 15px;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 10px;
+            /* font-size: 5em; */
+        }
+
+        .r_btn:hover {
+            background: linear-gradient(to right, #15325e, #1e4180);
+            box-shadow: 0 5px 15px rgba(42, 82, 152, 0.3);
+        }
+
+        .extra-options {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        .remember-me {
+            display: flex;
+            align-items: center;
+            color: #666;
+        }
+
+        .remember-me input {
+            margin-right: 8px;
+        }
+
+        .forgot-password {
+            color: #1e3c72;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .forgot-password:hover {
+            color: #2a5298;
+            text-decoration: underline;
+        }
+
+        .divider {
+            margin: 30px 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .divider::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            width: 100%;
+            height: 1px;
+            background: #eee;
+        }
+
+        .divider span {
+            position: relative;
+            background: white;
+            padding: 0 15px;
+            color: #888;
+            font-size: 14px;
+        }
+
+        .links {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .links a {
+            color:white;
+            text-decoration: none;
+            font-size: 20px;
+            transition: color 0.3s;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .links a:hover {
+            color:white;
+            text-decoration:none;
+        }
+
+        .error-message {
+            background-color: #ffebee;
+            color: #c62828;
+            padding: 10px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            border-left: 4px solid #c62828;
+        }
+        .l_user{
+            padding-left: 0.9em;
+            padding-right: 0.9em;
+            background: linear-gradient(to right, #1e3c72, #2a5298);
+            color: white;
+            padding-top: 0.5em;
+            padding-bottom: 0.5em;
+            border-radius: 15px;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 10px;
+        }
+        .l_user:hover{
+            background: linear-gradient(to right, #15325e, #1e4180);
+            box-shadow: 0 5px 15px rgba(42, 82, 152, 0.3);
+        }
+        /* Responsive adjustments */
+        @media (max-width: 992px) {
+            .container {
+                flex-direction: column;
+                height: auto;
+                max-width: 500px;
+            }
+
+            .login-image, .login-form {
+                padding: 30px;
+            }
+
+            .login-image {
+                min-height: 300px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Left Section - Image & Branding -->
+        <div class="login-image">
+            <div class="brand">
+                <h1>EngineerHub</h1>
+                <span>Engineering Solutions Portal</span>
+            </div>
+            <div class="illustration">
+                <h2>Welcome Back, Engineer</h2>
+                <p>Access your projects, tools, and engineering resources in one secure platform.</p>
+            </div>
+        </div>
+
+        <!-- Right Section - Login Form -->
+        <div class="login-form">
+            <h2>Engineer Login</h2>
+            {% if error %}
+            <div class="error-message">
+                {{ error }}
+            </div>
+            {% endif %}
+            <form action="{{ url_for('login_engineer') }}" method="POST">
+                <div class="form-group">
+                    <label for="email">Work Email</label>
+                    <div class="input-group">
+                        <input type="email" id="email" name="email" placeholder="your.name@company.com" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <div class="input-group">
+                        <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                        <button type="button" class="toggle-password" id="togglePassword">
+                            <i class="eye-icon">👁️</i>
+                        </button>
+                    </div>
+                </div>
+                <div class="extra-options">
+                    <label class="remember-me">
+                        <input type="checkbox" name="remember"> Remember me
+                    </label>
+                    <a href="#" class="forgot-password">Forgot password?</a>
+                </div>
+                <button type="submit" class="btn">Sign In</button>
+            </form>
+            <div class="divider">
+                <span>Or</span>
+            </div>
+            <div class="links">
+                <a href="{{ url_for('register_engineer') }}" class="r_btn">Register as Engineer</a>
+                <a href="{{ url_for('login_user') }}" class="l_user">Login as a User</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Function to toggle password visibility
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get references to the password input and toggle button
+            const passwordInput = document.getElementById('password');
+            const togglePasswordButton = document.getElementById('togglePassword');
+            
+            // Add click event listener to the toggle button
+            togglePasswordButton.addEventListener('click', function() {
+                // Check the current type of the password input
+                if (passwordInput.type === 'password') {
+                    // If it's a password field, change it to text to show the password
+                    passwordInput.type = 'text';
+                    togglePasswordButton.innerHTML = '<i class="eye-icon">👁️‍🗨️</i>'; // Changed icon for visible state
+                    togglePasswordButton.setAttribute('aria-label', 'Hide password');
+                } else {
+                    // If it's already visible, change it back to a password field
+                    passwordInput.type = 'password';
+                    togglePasswordButton.innerHTML = '<i class="eye-icon">👁️</i>'; // Original icon
+                    togglePasswordButton.setAttribute('aria-label', 'Show password');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

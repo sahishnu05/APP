@@ -1,164 +1,136 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="initial-scale=1, width=device-width" />
 
-    <link rel="stylesheet" href="{{url_for('static',filename='css/global.css')}}" />
-    <link rel="stylesheet" href="{{url_for('static',filename='css/profile.css')}}" />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;1,600;1,700;1,900&display=swap"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Sansita Swashed:wght@800&display=swap"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Encode Sans SC:wght@400;500&display=swap"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Andada Pro:wght@600&display=swap"
-    />
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="initial-scale=1, width=device-width" />
 
-    <style>
-      @font-face {
-        font-family: "Telegraf";
-        src: url("./public/PPTelegraf-Regular.otf");
-        font-weight: 400;
-      }
-    </style>
-  </head>
-  <body>
-      <header class="header">
-         <nav class="navc">
-             <div class="logo">
-                 <img src="{{url_for('static',filename='images/logo.png')}}" alt="">
-             </div>
-             <ul>
-                 <li class="list"><a href="{{url_for('home')}}" class="link">Home</a></li>
-                 <li class="list"><a href="{{url_for('calculator')}}" class="link">Calculator</a></li>
-                 <li class="list"><a href="{{url_for('bidsphere')}}" class="link">Bidsphere</a></li>
-                 <li class="list"><a href="{{url_for('schemes')}}" class="link">Schemes</a></li>
-                 <li class="list"><a href="{{url_for('engineers')}}" class="link">Engineers</a></li>
-                 <li class="list"><a href="" class="link" style="color: orange;">My Profile</a></li>
-             </ul>
-         </nav>
-     </header>
-      <section class="frame-section">
-        <div class="logout-button-wrapper">
-          <div class="logout-button1">
-            <div class="male-radio">
-              <button class="female-radio">
-                <div class="name">Name</div>
-              </button>
-              <button class="female-radio1">
-                <div class="gender">Gender</div>
-              </button>
-            </div>
-          </div>
+  <link rel="stylesheet" href="{{url_for('static',filename='css/global.css')}}" />
+  <link rel="stylesheet" href="{{url_for('static',filename='css/profile.css')}}" />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;1,600;1,700;1,900&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sansita Swashed:wght@800&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Encode Sans SC:wght@400;500&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Andada Pro:wght@600&display=swap" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+
+  <style>
+    @font-face {
+      font-family: "Telegraf";
+      src: url("./public/PPTelegraf-Regular.otf");
+      font-weight: 400;
+    }
+  </style>
+</head>
+
+<body>
+  <header class="header">
+    <nav class="navigation">
+      <div class="logo">
+        <img src="{{url_for('static',filename='public/6569d003ebc8904744f138c8-aiicon-removebg-preview 1.png')}}"
+          alt="BuildDream Logo">
+      </div>
+      <ul class="nav-links">
+        <li class="list"><a href="{{ url_for('home', user_id=user['_id']) }}" class="link">Home</a></li>
+        <li class="list"><a href="{{ url_for('calculator', user_id=user['_id']) }}" class="link">Calculator</a></li>
+        <li class="list"><a href="{{ url_for('bidsphere', user_id=user['_id']) }}" class="link">Bidsphere</a></li>
+        <li class="list"><a href="{{ url_for('engineerlist', project_id=project['_id'], user_id=user['_id']) }}" class="link">Engineers</a></li>
+        <li class="list"><a href="{{ url_for('schemes', user_id=user['_id']) }}" class="link">Schemes</a></li>
+        <li class="list"><a href="{{ url_for('profile', user_id=user['_id']) }}" class="link">My Profile</a></li>
+      </ul>
+      <button class="menu-toggle">
+        <i class="fas fa-bars"></i>
+      </button>
+    </nav>
+  </header>
+  <div class="profile-container">
+    <div class="profile-header">
+      <h1>Personal Information</h1>
+      <div class="profile-avatar">
+        <i class="fas fa-user"></i>
+      </div>
+    </div>
+    
+    <div class="profile-content">
+      <!-- Name Card -->
+      <div class="profile-card">
+        <div class="profile-card-header">
+          <i class="fas fa-id-card"></i>
+          <h3>Name</h3>
         </div>
-        <div class="edit-button">
-          <div class="logout-button-parent">
-            <div class="logout-button2">
-              <div class="frame-parent3">
-                <div class="rectangle-wrapper">
-                  <div class="rectangle-div"></div>
-                </div>
-                <button class="e-mail-wrapper">
-                  <div class="e-mail">E-Mail</div>
-                </button>
-                <div class="logo-container">
-                  <img
-                    class="logo-container-child"
-                    alt=""
-                    src="{{url_for('static',filename='public/rectangle-8.svg')}}"
-                  />
-                </div>
-                <button class="mobile-number-wrapper">
-                  <div class="mobile-number">Mobile Number</div>
-                </button>
-                <div class="rectangle-container">
-                  <div class="frame-child21"></div>
-                </div>
-              </div>
-            </div>
-            <button class="logout-wrapper">
-              <a href="{{ url_for('login') }}" onclick="return confirm('Are you sure you want to logout?')">Logout</a>
-            </button>
-          </div>
-          <div class="date-of-birth-label-wrapper">
-            <div class="date-of-birth-label">
-              <div class="frame-parent4">
-                <div class="d-d-m-m-y-y-y-y-format-label-wrapper">
-                  <div class="d-d-m-m-y-y-y-y-format-label">
-                    <div class="radiocheckbox-parent">
-                      <input
-                        class="radiocheckbox"
-                        checked="{true}"
-                        type="radio"
-                        name="radioGroup-1"
-                      />
-
-                      <div class="male">Male</div>
-                    </div>
-                    <div class="mobile-number-input">
-                      <div class="female-radio2">
-                        <div class="radiocheckbox-wrapper">
-                          <input
-                            class="radiocheckbox1"
-                            type="radio"
-                            name="radioGroup-1"
-                          />
-                        </div>
-                        <div class="female">Female</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="birthdate-picker-parent">
-                  <button class="birthdate-picker">
-                    <div class="date-of-birth">Date of Birth</div>
-                  </button>
-                  <div class="frame">
-                    <div class="ob-forms">
-                      <div class="input-field">
-                        <div class="name1"></div>
-                      </div>
-                    </div>
-                    <div class="ddmmyyyy">DD/MM/YYYY</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div class="profile-card-content">
+          {{ user.get('full_name', '') }}
         </div>
-      </section>
+      </div>
+      
+      <!-- Email Card -->
+      <div class="profile-card">
+        <div class="profile-card-header">
+          <i class="fas fa-envelope"></i>
+          <h3>Email</h3>
+        </div>
+        <div class="profile-card-content">
+          {{ user.get('email', '') }}
+        </div>
+      </div>
+      
+      <!-- Mobile Number Card -->
+      <div class="profile-card">
+        <div class="profile-card-header">
+          <i class="fas fa-mobile-alt"></i>
+          <h3>Mobile Number</h3>
+        </div>
+        <div class="profile-card-content">
+          {{ user.get('phone_number', '') }}
+        </div>
+      </div>
+      
+      <!-- Date of Birth Card -->
+      <div class="profile-card">
+        <div class="profile-card-header">
+          <i class "fas fa-birthday-cake"></i>
+          <h3>Date of Birth</h3>
+        </div>
+        <div class="profile-card-content">
+          {{ user.get('date_of_birth', '') }}
+        </div>
+      </div>
+      
+      <!-- Gender Card - Only show if present -->
+      {% if user.get('gender') %}
+      <div class="profile-card">
+        <div class="profile-card-header">
+          <i class="fas fa-venus-mars"></i>
+          <h3>Gender</h3>
+        </div>
+        <div class="profile-card-content">
+          {{ user.get('gender', '') }}
+        </div>
+      </div>
+      {% endif %}
+      
+      <!-- Action Buttons -->
+      <div class="profile-actions">
+        <a href="{{ url_for('login_user') }}" onclick="return confirm('Are you sure you want to logout?')" class="profile-btn profile-btn-logout">Logout</a>
+      </div>
     </div>
-  </section>
+  </div>
 
-  <!-- The profile section now displays user information as plain text without inputs -->
-  <section class="profile-display">
-    <div class="form-group">
-      <label for="name" class="form-label">Name:</label>
-      <div class="name-display">{{ user['name'] }}</div>
-    </div>
-    <div class="form-group">
-      <label for="email" class="form-label">Email:</label>
-      <div class="email-display">{{ user['email'] }}</div>
-    </div>
-    <div class="form-group">
-      <label for="mobile_number" class="form-label">Mobile Number:</label>
-      <div class="mobile-number-display">{{ user['mobile_number'] }}</div>
-    </div>
-    <div class="form-group">
-      <label for="date_of_birth" class="form-label">Date of Birth:</label>
-      <div class="birthdate-display">{{ user['date_of_birth'] }}</div>
-    </div>
-  </section>
+  <script>
+    let globalVar = localStorage.getItem("globalVar");
+    let contentDiv = document.getElementById("c_r");
 
+    // Dynamically set links based on globalVar, user_id, and project_id
+    const projectId = "{{ project['_id'] }}"; // Pass project ID dynamically from Flask
+    const userId = "{{ user['_id'] }}";
+
+    if (globalVar === "true") {
+        contentDiv.innerHTML = `<a href="{{ url_for('engineerlist', user_id=user['_id'], project_id=project['_id']) }}" class="link">Engineers</a>`;
+    } else {
+        contentDiv.innerHTML = `<a href="{{ url_for('bidsphere', user_id=user['_id']) }}" class="link">Bidsphere</a>`;
+    }
+  </script>
   <script src="{{url_for('static',filename='jss/nav.js')}}"></script>
-  </body>
+</body>
+
 </html>

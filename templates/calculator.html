@@ -49,52 +49,30 @@
 <body>
     <div class="home-section">
         <header class="header">
-            <nav class="navc">
-                <div class="logo">
-                    <img src="{{url_for('static',filename='images/logo.png')}}" alt="">
-                </div>
-                <ul>
-                    <li class="list"><a href="{{url_for('home')}}" class="link">Home</a></li>
-                    <li class="list"><a href="{{url_for('calculator')}}" class="link">Calculator</a></li>
-                    <li class="list"><a href="{{ url_for('bidsphere') }}" class="link">Bidsphere</a></li>
-                    <li class="list"><a href="{{ url_for('schemes') }}" class="link">Schemes</a></li>
-                    <li class="list"><a href="{{ url_for('engineers') }}" class="link">Engineers</a></li>
-                    <li class="list"><a href="{{ url_for('profile') }}" class="link">MY profile</a></li>
-                </ul>
+            <nav class="navigation">
+              <div class="logo">
+                <img src="{{url_for('static',filename='public/6569d003ebc8904744f138c8-aiicon-removebg-preview 1.png')}}" alt="BuildDream Logo">
+              </div>
+              <ul class="nav-links">
+                <li class="list"><a href="{{ url_for('home', user_id=user['_id']) }}" class="link">Home</a></li>
+                <li class="list"><a href="{{ url_for('calculator', user_id=user['_id']) }}" class="link">Calculator</a></li>
+                <li class="list"><a href="{{ url_for('bidsphere', user_id=user['_id']) }}" class="link">Bidsphere</a></li>
+                <li class="list"><a href="{{ url_for('engineerlist', project_id=project['_id'], user_id=user['_id']) }}" class="link">Engineers</a></li>
+                <li class="list"><a href="{{ url_for('schemes', user_id=user['_id']) }}" class="link">Schemes</a></li>
+                <li class="list"><a href="{{ url_for('profile', user_id=user['_id']) }}" class="link">My Profile</a></li>
+              </ul>
+              <button class="menu-toggle">
+                <i class="fas fa-bars"></i>
+              </button>
             </nav>
-        </header>
+          </header>
         <main>
             <div class="cal-section">
                 <div class="box">
                     <div class="c-overlay"></div>
                     <img src="{{url_for('static',filename='images/calculator.jpg')}}" alt="" class="cal-image">
                 </div>
-                <!-- <form action="">
-                <div class="con-box">
-                    <div class="ele">
-                        <div class="container">
-                            <div class="input-group">
-                                <label for="houseType">House Type*</label>
-                                <select id="houseType" name="houseType">
-                                    <option value="basic" selected>basic</option>
-                                    <option value="premium" selected>Premium</option>
-                                </select>
-                            </div>
-
-                            <div class="input-group">
-                                <label for="area">Area*</label>
-                                <input type="number" id="area" name="area" placeholder="Sq.Feet">
-                            </div>
-
-                            <div class="input-group">
-                                <label for="pincode">Pincode*</label>
-                                <input type="text" id="pincode" name="pincode" placeholder="Pincode">
-                            </div>
-                        </div>
-                        <button class='su' type="submit">Calculate Cost</button>
-                    </div>
-                </div>
-            </form> -->
+           
             <form method="POST">
                 <div class="con-box">
                     <div class="container">
@@ -161,8 +139,9 @@
         document.querySelector('form').addEventListener('submit', function (event) {
             event.preventDefault();
         
-            const formData = new FormData(this);  
-            fetch('/calculator', {
+            const formData = new FormData(this);
+            const userId = "{{ user['_id'] }}";  
+            fetch(`/calculator/${userId}`, {
                 method: 'POST',
                 body: formData,
             })
@@ -176,6 +155,20 @@
             })
             .catch(error => console.error('Error:', error));
         });
+        let globalVar = localStorage.getItem("globalVar");
+
+      
+        let contentDiv = document.getElementById("c_r");
+
+        // Dynamically set links based on globalVar, user_id, and project_id
+        const projectId = "{{ project['_id'] }}"; // Pass project ID dynamically from Flask
+        const userId = "{{ user['_id'] }}";
+
+        if (globalVar === "true") {
+            contentDiv.innerHTML = `<a href="{{ url_for('engineerlist', user_id=user['_id'], project_id=project['_id']) }}" class="link">Engineers</a>`;
+        } else {
+            contentDiv.innerHTML = `<a href="{{ url_for('bidsphere', user_id=user['_id']) }}" class="link">Bidsphere</a>`;
+        }
         </script>
         
 </body>

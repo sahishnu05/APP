@@ -1,0 +1,30 @@
+Material,Application,Strength,Durability,Availability,Cost (per piece),Environmental Impact,Compatibility,Ease of Use,Brand/Supplier,Review,Ratings
+Sun-dried Bricks,Walls,Low,Low,Medium,8.0,High,Compatible,Easy,India Mart,"""Suitable for temporary structures.""",4.2
+Sun-dried Bricks,Walls,Low,Low,Medium,8.0,High,Compatible,Easy,BuildPro,"""Affordable but not very durable.""",4.5
+Sun-dried Bricks,Flooring,Low,Low,Medium,8.0,High,Compatible,Easy,ConstructionKart,"""Not suitable for heavy traffic areas.""",4.1
+Sun-dried Bricks,Roofing,Low,Low,Medium,8.0,High,Compatible,Easy,ConstroBazaar,"""May degrade over time if exposed to water.""",4.3
+Burnt Clay Bricks,Walls,Medium,Medium,High,10.0,Medium,Compatible,Easy,BuildNext,"""Versatile and widely used in construction.""",4.0
+Burnt Clay Bricks,Walls,Medium,Medium,High,10.0,Medium,Compatible,Easy,India Mart,"""Durable and weather-resistant.""",4.2
+Burnt Clay Bricks,Flooring,Medium,Medium,High,10.0,Medium,Compatible,Easy,BuildPro,"""Suitable for various flooring applications.""",4.4
+Burnt Clay Bricks,Roofing,Medium,Medium,High,10.0,Medium,Compatible,Easy,ConstructionKart,"""Provides good insulation and protection against weather.""",4.1
+Fly ash Bricks,Walls,Medium,High,Medium,9.0,Medium,Compatible,Easy,ConstroBazaar,"""Environmentally friendly alternative to traditional bricks.""",4.3
+Fly ash Bricks,Walls,Medium,High,Medium,9.0,Medium,Compatible,Easy,BuildNext,"""Offers good thermal insulation.""",4.5
+Fly ash Bricks,Flooring,Medium,High,Medium,9.0,Medium,Compatible,Easy,India Mart,"""Durable and suitable for various flooring applications.""",4.0
+Fly ash Bricks,Roofing,Medium,High,Medium,9.0,Medium,Compatible,Easy,BuildPro,"""Resistant to fire and weather conditions.""",4.2
+Concrete Bricks,Walls,High,High,High,12.0,Low,Compatible,Easy,ConstructionKart,"""Highly durable and resistant to weather conditions.""",4.3
+Concrete Bricks,Walls,High,High,High,12.0,Low,Compatible,Easy,ConstroBazaar,"""Suitable for load-bearing structures.""",4.5
+Concrete Bricks,Flooring,High,High,High,12.0,Low,Compatible,Easy,BuildNext,"""Provides smooth and sturdy flooring.""",4.1
+Concrete Bricks,Roofing,High,High,High,12.0,Low,Compatible,Easy,India Mart,"""Offers good protection against water and weather.""",4.4
+Engineering Bricks,Walls,High,High,Medium,15.0,Low,Compatible,Easy,BuildPro,"""Highly resistant to abrasion and compression.""",4.3
+Engineering Bricks,Walls,High,High,Medium,15.0,Low,Compatible,Easy,ConstroBazaar,"""Suitable for structures requiring high strength and durability.""",4.2
+Engineering Bricks,Flooring,High,High,Medium,15.0,Low,Compatible,Easy,ConstructionKart,"""Provides smooth and wear-resistant flooring.""",4.0
+Engineering Bricks,Roofing,High,High,Medium,15.0,Low,Compatible,Easy,BuildNext,"""Offers excellent resistance to water absorption and frost.""",4.5
+Calcium Silicate Bricks,Walls,High,High,Low,20.0,Low,Compatible,Easy,India Mart,"""Lightweight and suitable for high-rise construction.""",4.3
+Calcium Silicate Bricks,Walls,High,High,Low,20.0,Low,Compatible,Easy,ConstroBazaar,"""Provides good thermal insulation.""",4.0
+Calcium Silicate Bricks,Flooring,High,High,Low,20.0,Low,Compatible,Easy,BuildPro,"""Resistant to fire and moisture.""",4.2
+Calcium Silicate Bricks,Roofing,High,High,Low,20.0,Low,Compatible,Easy,ConstructionKart,"""Durable and weather-resistant.""",4.4
+Eco Bricks,Walls,Medium,Medium,Medium,12.0,High,Compatible,Easy,India Mart,"""Made from recycled materials,  environmentally friendly.""",4.5
+Eco Bricks,Walls,Medium,Medium,Medium,12.0,High,Compatible,Easy,Buildpro,"""Versatile and can be used in various construction projects.""",4.2
+Eco Bricks,Flooring,Medium,Medium,Medium,12.0,High,Compatible,Easy,Constructionkart,"""Provides good insulation and is easy to work with.""",4.1
+Eco Bricks,Roofing,Medium,Medium,Medium,12.0,High,Compatible,Easy,Constrobazaar,"""Suitable for sustainable building practices.""",4.3
+,,,,,,,,,,,4.5

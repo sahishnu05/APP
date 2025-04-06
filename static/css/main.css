@@ -1,0 +1,41 @@
+*
+{
+        margin:0;
+        padding:0;
+        box-sizing: border-box;
+}
+
+.container{
+    width: 100%;
+    height:100svh;
+}
+.box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+.align{
+    display: flex;
+    justify-content: space-between;
+    column-gap: 25px;
+}
+.user{
+    display:flex;
+    flex-direction: column;
+    
+}
+.engineer{
+    display:flex;
+    flex-direction: column;
+}
+.title_align{
+    text-align: center;
+}
+body{
+    background-color:ivory;
+}
+a{
+    text-decoration: none;
+}

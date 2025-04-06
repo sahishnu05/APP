@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Engineer Profile</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/engineerpage.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
+    <style>
+        .profile-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .profile-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .profile-name {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .profile-card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 25px;
+            margin-bottom: 25px;
+        }
+        
+        .profile-section {
+            margin-bottom: 20px;
+        }
+        
+        .profile-section-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #444;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 8px;
+            margin-bottom: 15px;
+        }
+        
+        .profile-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        .profile-info p {
+            margin: 8px 0;
+        }
+        
+        .profile-info strong {
+            color: #555;
+        }
+        
+        .ratings-section {
+            margin-top: 20px;
+        }
+        
+        .rating-stars {
+            color: #ffc107;
+            font-size: 1.5rem;
+        }
+        
+        .edit-btn {
+            background-color: #4285f4;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <!-- <header>
+        <h1>Engineer Dashboard</h1>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('engineer_dashboard', engineer_id=engineer._id) }}">Available Projects</a></li>
+                <li><a href="{{ url_for('allotted_projects', engineer_id=engineer._id) }}">Allotted Projects</a></li>
+                <li><a href="{{ url_for('engineer_profile', engineer_id=engineer._id) }}" class="active">Profile</a></li>
+                <li><a href="{{ url_for('logout_engineer') }}">Logout</a></li>
+            </ul>
+        </nav>
+    </header> -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="#">Engineer Dashboard</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link " href="{{ url_for('engineer_dashboard', engineer_id=engineer._id) }}">
+                            <i class="bi bi-kanban me-1"></i>Available Projects
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('allotted_projects', engineer_id=engineer._id) }}">
+                            <i class="bi bi-clipboard-check me-1"></i>Allotted Projects
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{ url_for('engineer_profile', engineer_id=engineer._id) }}">
+                            <i class="bi bi-person me-1"></i>Profile
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('logout_engineer') }}">
+                            <i class="bi bi-box-arrow-right me-1"></i>Logout
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <main>
+        <div class="profile-container">
+            <div class="profile-header">
+                <div class="profile-name">{{ engineer.full_name }}</div>
+                <!-- <button class="edit-btn">Edit Profile</button> -->
+            </div>
+            
+            <div class="profile-card">
+                <div class="profile-section">
+                    <div class="profile-section-title">Personal Information</div>
+                    <div class="profile-info">
+                        <p><strong>Email:</strong> {{ engineer.email }}</p>
+                        <p><strong>Location:</strong> {{ engineer.city }}, {{ engineer.country }}</p>
+                        <p><strong>Experience:</strong> {{ engineer.years_experience }} years</p>
+                        <p><strong>Completed Projects:</strong> {{ engineer.projects_completed }}</p>
+                    </div>
+                </div>
+                
+                <div class="profile-section">
+                    <div class="profile-section-title">Educational Background</div>
+                    <div class="profile-info">
+                        <p><strong>College/University:</strong> {{ engineer.college_name }}</p>
+                        <p><strong>Degree:</strong> {{ engineer.degree }}</p>
+                        <p><strong>Field of Study:</strong> {{ engineer.field_of_study }}</p>
+                    </div>
+                </div>
+                
+                <div class="profile-section ratings-section">
+                    <div class="profile-section-title">Ratings & Reviews</div>
+                    <div class="rating-summary">
+                        {% if engineer.ratings %}
+                            {% set avg_rating = (engineer.ratings|sum / engineer.ratings|length)|round(1) %}
+                            <p>Average Rating: <strong>{{ avg_rating }}</strong>/5</p>
+                            <div class="rating-stars">
+                                {% for i in range(5) %}
+                                    {% if i < avg_rating|int %}
+                                        ★
+                                    {% elif i < avg_rating and i >= avg_rating|int %}
+                                        ★
+                                    {% else %}
+                                        ☆
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                            <p>Based on {{ engineer.ratings|length }} project(s)</p>
+                        {% else %}
+                            <p>No ratings yet</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

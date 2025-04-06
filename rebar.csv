@@ -1,0 +1,28 @@
+Material,Application,Quality,Durability,Availability,Cost (per unit),Environmental Impact,Compatibility,Ease of Use,Brand/Supplier,Review,Ratings
+Carbon Steel Rebar,Construction,High,High,High,50,Medium,Compatible,Easy,Tata Steel,"""Trusted brand with reliable quality.""",4.2
+Carbon Steel Rebar,Construction,High,High,High,50,Medium,Compatible,Easy,JSW Steel,"""Known for consistency and strength in construction.""",4.5
+Carbon Steel Rebar,Construction,High,High,High,50,Medium,Compatible,Easy,SAIL,"""Widely used in various construction projects.""",4.1
+Stainless Steel Rebar,Construction,High,Very High,Medium,120,Low,Compatible,Moderate,ArcelorMittal,"""Offers exceptional corrosion resistance.""",4.3
+Stainless Steel Rebar,Construction,High,Very High,Medium,120,Low,Compatible,Moderate,Outokumpu,"""Known for high-quality stainless steel products.""",4.0
+Stainless Steel Rebar,Construction,High,Very High,Medium,120,Low,Compatible,Moderate,Nippon Steel,"""Provides durability in harsh environments.""",4.2
+GFRP Rebar,Construction,High,High,Medium,90,Low,Compatible,Easy,Hughes Brothers,"""Lightweight alternative with good durability.""",4.4
+GFRP Rebar,Construction,High,High,Medium,90,Low,Compatible,Easy,Pultrall,"""Resistant to corrosion and electromagnetic neutrality.""",4.1
+GFRP Rebar,Construction,High,High,Medium,90,Low,Compatible,Easy,TUF-BAR,"""Offers long-term durability in concrete structures.""",4.3
+Carbon Fiber Rebar,Construction,High,Very High,Medium,150,Low,Compatible,Easy,Toray Industries,"""Exceptional strength-to-weight ratio.""",4.5
+Carbon Fiber Rebar,Construction,High,Very High,Medium,150,Low,Compatible,Easy,Zoltek,"""Provides high tensile strength and corrosion resistance.""",4.0
+Carbon Fiber Rebar,Construction,High,Very High,Medium,150,Low,Compatible,Easy,SGL Carbon,"""Lightweight and durable solution for reinforced concrete.""",4.2
+Basalt Rebar,Construction,High,High,Medium,70,Low,Compatible,Easy,Basaltex,"""Durable and eco-friendly alternative to traditional reinforcement.""",4.3
+Basalt Rebar,Construction,High,High,Medium,70,Low,Compatible,Easy,Technobasalt,"""Offers excellent tensile strength and resistance to corrosion.""",4.5
+Basalt Rebar,Construction,High,High,Medium,70,Low,Compatible,Easy,Kodiak FRP,"""Resistant to chemical and environmental degradation.""",4.1
+FRP Rebar,Construction,High,High,Medium,80,Low,Compatible,Easy,Liberty Pultrusions,"""Offers high strength and durability with minimal maintenance.""",4.4
+FRP Rebar,Construction,High,High,Medium,80,Low,Compatible,Easy,Strongwell,"""Lightweight and corrosion-resistant solution for concrete reinforcement.""",4.3
+FRP Rebar,Construction,High,High,Medium,80,Low,Compatible,Easy,Fiberline Composites,"""Ensures long-term durability and structural integrity.""",4.2
+Epoxy-Coated Rebar,Construction,High,High,Medium,60,Low,Compatible,Easy,MMFX Steel,"""Provides enhanced corrosion resistance in aggressive environments.""",4.0
+Epoxy-Coated Rebar,Construction,High,High,Medium,60,Low,Compatible,Easy,Huayang Steel,"""Protects against corrosion and extends service life of structures.""",4.5
+Epoxy-Coated Rebar,Construction,High,High,Medium,60,Low,Compatible,Easy,Fiberglas Reinforced Plastics,"""Offers superior protection against corrosion and abrasion.""",4.3
+Galvanized Rebar,Construction,High,High,High,55,Low,Compatible,Easy,Harris Rebar,"""Provides corrosion protection for reinforced concrete structures.""",4.0
+Galvanized Rebar,Construction,High,High,High,55,Low,Compatible,Easy,Reinforcing Services Inc.,"""Ideal for use in marine and coastal environments.""",4.2
+Galvanized Rebar,Construction,High,High,High,55,Low,Compatible,Easy,Macuch Steel Products,"""Ensures long-term durability in aggressive environments.""",4.4
+Wire Mesh,Construction,Medium,Medium,High,45,Medium,Compatible,Easy,Nucor Corporation,"""Provides reinforcement for concrete slabs,  walls,  and pavements.""",4.5
+Wire Mesh,Construction,Medium,Medium,High,45,Medium,Compatible,Easy,Harris Steel,"""Offers strength and stability in concrete reinforcement applications.""",4.2
+Wire Mesh,Construction,Medium,Medium,High,45,Medium,Compatible,Easy,Wire Mesh Corporation,"""Durable and cost-effective solution for reinforcement needs.""",4.1

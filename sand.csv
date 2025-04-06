@@ -1,0 +1,17 @@
+Material,Application,Quality,Durability,Availability,Cost (per unit),Environmental Impact,Compatibility,Ease of Use,Brand/Supplier,Review,Ratings
+Pit Sand,Construction,Medium,Medium,High,40,Medium,Compatible,Easy,India Mart,"""Widely available and suitable for general construction.""",4.2
+Pit Sand,Construction,Medium,Medium,High,40,Medium,Compatible,Easy,BuildPro,"""Provides good stability and compactness for construction.""",4.5
+Pit Sand,Flooring,Medium,Medium,High,40,Medium,Compatible,Easy,ConstructionKart,"""Suitable for various flooring applications.""",4.1
+Pit Sand,Plastering,Medium,Medium,High,40,Medium,Compatible,Easy,ConstroBazaar,"""Ensures smooth and uniform plastering finishes.""",4.3
+River Sand,Construction,Medium,High,High,50,Low,Compatible,Easy,India Mart,"""Traditional and widely used in construction.""",4.0
+River Sand,Construction,Medium,High,High,50,Low,Compatible,Easy,BuildPro,"""Provides good strength and stability.""",4.2
+River Sand,Flooring,Medium,High,High,50,Low,Compatible,Easy,ConstructionKart,"""Suitable for various flooring applications.""",4.4
+River Sand,Plastering,Medium,High,High,50,Low,Compatible,Easy,ConstroBazaar,"""Ensures smooth and uniform plastering finishes.""",4.1
+Sea Sand,Construction,Low,Medium,Low,30,High,Incompatible,Difficult,ConstructionKart,"""Not recommended for construction due to salt content.""",4.3
+Sea Sand,Construction,Low,Medium,Low,30,High,Incompatible,Difficult,ConstroBazaar,"""May cause corrosion in concrete structures.""",4.5
+Sea Sand,Flooring,Low,Medium,Low,30,High,Incompatible,Difficult,India Mart,"""Not suitable for flooring applications due to salt content.""",4.0
+Sea Sand,Plastering,Low,Medium,Low,30,High,Incompatible,Difficult,BuildPro,"""Difficult to use for plastering due to salt content.""",4.2
+Artificial Sand,Construction,High,High,Medium,45,Medium,Compatible,Easy,BuildNext,"""Environmentally friendly alternative to river sand.""",4.3
+Artificial Sand,Construction,High,High,Medium,45,Medium,Compatible,Easy,India Mart,"""Offers consistent quality and gradation.""",4.5
+Artificial Sand,Flooring,High,High,Medium,45,Medium,Compatible,Easy,ConstroBazaar,"""Suitable for various flooring applications.""",4.1
+Artificial Sand,Plastering,High,High,Medium,45,Medium,Compatible,Easy,BuildPro,"""Ensures smooth and uniform plastering finishes.""",4.4

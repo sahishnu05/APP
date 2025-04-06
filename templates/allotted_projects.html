@@ -1,0 +1,298 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Allotted Projects</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/engineerpage.css') }}">
+    <style>
+        .project-card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+        
+        .project-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .project-status {
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        
+        .status-awarded {
+            background-color: #e3f2fd;
+            color: #0d47a1;
+        }
+        
+        .status-completed {
+            background-color: #e8f5e9;
+            color: #1b5e20;
+        }
+        
+        .project-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        .project-info p {
+            margin: 5px 0;
+        }
+        
+        .project-actions {
+            margin-top: 15px;
+            text-align: right;
+        }
+        
+        .btn {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        .btn-primary {
+            background-color: #4285f4;
+            color: white;
+        }
+        
+        .no-projects {
+            text-align: center;
+            padding: 30px;
+            color: #757575;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Engineer Dashboard</h1>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('engineer_dashboard', engineer_id=engineer._id) }}">Available Projects</a></li>
+                <li><a href="{{ url_for('allotted_projects', engineer_id=engineer._id) }}" class="active">Allotted Projects</a></li>
+                <li><a href="{{ url_for('engineer_profile', engineer_id=engineer._id) }}">Profile</a></li>
+                <li><a href="{{ url_for('logout_engineer') }}">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <h2>Your Allotted Projects</h2>
+            
+            {% if allotted_projects %}
+                {% for project in allotted_projects %}
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-title">{{ project.project_title }}</div>
+                        <div class="project-status status-{{ project.status }}">{{ project.status|capitalize }}</div>
+                    </div>
+                    <div class="project-info">
+                        <p><strong>Location:</strong> {{ project.location }}</p>
+                        <p><strong>Budget:</strong> ₹{{ project.desired_budget }}</p>
+                        <p><strong>Area:</strong> {{ project.construction_area }} sq.m</p>
+                        <p><strong>Your Bid:</strong> ₹{{ project.bid_amount }}</p>
+                    </div>
+                    {% if project.description %}
+                    <div class="project-description">
+                        <p><strong>Description:</strong> {{ project.description }}</p>
+                    </div>
+                    {% endif %}
+                    <div class="project-actions">
+                        {% if project.status == 'awarded' %}
+                        <form action="{{ url_for('mark_project_complete_engineer', project_id=project._id, engineer_id=engineer._id) }}" method="POST">
+                            <button type="submit" class="btn btn-primary">Mark as Completed</button>
+                        </form>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <p class="no-projects">You don't have any allotted projects yet.</p>
+            {% endif %}
+        </div>
+    </main>
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Allotted Projects</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/engineerpage.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
+    <style>
+        .project-card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+        
+        .project-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .project-status {
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        
+        .status-awarded {
+            background-color: #e3f2fd;
+            color: #0d47a1;
+        }
+        
+        .status-completed {
+            background-color: #e8f5e9;
+            color: #1b5e20;
+        }
+        
+        .project-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        .project-info p {
+            margin: 5px 0;
+        }
+        
+        .project-actions {
+            margin-top: 15px;
+            text-align: right;
+        }
+        
+        .btn {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        .btn-primary {
+            background-color: #4285f4;
+            color: white;
+        }
+        
+        .no-projects {
+            text-align: center;
+            padding: 30px;
+            color: #757575;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+        <!-- Bootstrap Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="#">Engineer Dashboard</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link " href="{{ url_for('engineer_dashboard', engineer_id=engineer._id) }}">
+                                <i class="bi bi-kanban me-1"></i>Available Projects
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="{{ url_for('allotted_projects', engineer_id=engineer._id) }}">
+                                <i class="bi bi-clipboard-check me-1"></i>Allotted Projects
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('engineer_profile', engineer_id=engineer._id) }}">
+                                <i class="bi bi-person me-1"></i>Profile
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('logout_engineer') }}">
+                                <i class="bi bi-box-arrow-right me-1"></i>Logout
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+    <main>
+        <div class="container">
+            <h2>Your Allotted Projects</h2>
+            
+            {% if allotted_projects %}
+                {% for project in allotted_projects %}
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-title">{{ project.project_title }}</div>
+                        <div class="project-status status-{{ project.status }}">{{ project.status|capitalize }}</div>
+                    </div>
+                    <div class="project-info">
+                        <p><strong>Location:</strong> {{ project.location }}</p>
+                        <p><strong>Budget:</strong> ₹{{ project.desired_budget }}</p>
+                        <p><strong>Area:</strong> {{ project.construction_area }} sq.m</p>
+                        <p><strong>Your Bid:</strong> ₹{{ project.bid_amount }}</p>
+                    </div>
+                    {% if project.description %}
+                    <div class="project-description">
+                        <p><strong>Description:</strong> {{ project.description }}</p>
+                    </div>
+                    {% endif %}
+                    <div class="project-actions">
+                        {% if project.status == 'awarded' %}
+                        <form action="{{ url_for('mark_project_complete_engineer', project_id=project._id, engineer_id=engineer._id) }}" method="POST">
+                            <button type="submit" class="btn btn-primary">Mark as Completed</button>
+                        </form>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <p class="no-projects">You don't have any allotted projects yet.</p>
+            {% endif %}
+        </div>
+    </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,40 +1,329 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>User Login</h1>
+        {% if error %}
+        <div class="error-message">
+            {{ error }}
+        </div>
+        {% endif %}
+        <form action="{{ url_for('login_user') }}" method="POST">
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit" class="btn">Login</button>
+        </form>
+        <div class="links">
+            <a href="{{ url_for('register_user') }}">Don't have an account? Register</a><br>
+            <a href="{{ url_for('login_engineer') }}">Login as an Engineer</a>
+        </div>
+    </div>
+</body>
+</html> -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/logstyle.css') }}">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f5f5f5;
+        }
+
+        .box {
+            display: flex;
+            width: 80%;
+            max-width: 1000px;
+            height: 600px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .left {
+            width: 50%;
+            background: linear-gradient(135deg, #3498db, #2c3e50);
+            color: white;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .left img:first-child {
+            width: 150px;
+            margin-bottom: 20px;
+        }
+
+        .left h1 {
+            font-size: 26px;
+            font-weight: 500;
+            margin: 30px 0;
+            line-height: 1.4;
+        }
+
+        #abstraction {
+            width: 80%;
+            max-width: 300px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .right {
+            width: 50%;
+            background-color: white;
+            padding: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .h {
+            font-size: 32px;
+            color: #333;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .la {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        input {
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+
+        .to {
+            position: relative;
+        }
+
+        #eyeicon {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            cursor: pointer;
+        }
+
+        button {
+            padding: 15px;
+            background: linear-gradient(to right, #3498db, #2c3e50);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background: linear-gradient(to right, #2980b9, #1e2a3a);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+        }
+
+        .he {
+            text-align: center;
+            color: #777;
+            margin: 25px 0;
+            font-size: 16px;
+            font-weight: normal;
+            position: relative;
+        }
+
+        .he::before, .he::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 30%;
+            height: 1px;
+            background-color: #ddd;
+        }
+
+        .he::before {
+            left: 0;
+        }
+
+        .he::after {
+            right: 0;
+        }
+
+        #no_account {
+            text-align: center;
+            font-size: 14px;
+            font-weight: normal;
+            color: #555;
+        }
+
+        #no_account a {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        #no_account a:hover {
+            text-decoration: underline;
+        }
+
+        .error-message {
+            background-color: #ffebee;
+            color: #c62828;
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            border-left: 4px solid #c62828;
+        }
+
+        .links {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .links a {
+            color: #3498db;
+            text-decoration: none;
+            font-size: 14px;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .links a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .box {
+                flex-direction: column;
+                height: auto;
+                width: 90%;
+            }
+
+            .left, .right {
+                width: 100%;
+            }
+
+            .left {
+                padding: 30px;
+            }
+
+            #abstraction {
+                display: none;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="box">
         <div class="left">
-            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo">
+            <!-- Placeholder for your logo.png image -->
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22150%22 height=%22150%22><rect width=%22150%22 height=%22150%22 fill=%22%23FFFFFF%22 fill-opacity=%220.2%22 /><text x=%2275%22 y=%2275%22 font-size=%2225%22 text-anchor=%22middle%22 alignment-baseline=%22middle%22 fill=%22white%22>Logo</text></svg>'">
             <h1>"Building Dreams, One Click at a Time!"</h1>
-            <img src="{{ url_for('static', filename='images/Abstraction.png') }}" alt="Abstraction" id="abstraction">
+            <!-- Placeholder for your Abstraction.png image -->
+            <img src="{{ url_for('static', filename='images/Abstraction.png') }}" alt="Abstraction" id="abstraction" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22><rect width=%22300%22 height=%22200%22 fill=%22%23FFFFFF%22 fill-opacity=%220.2%22 /><text x=%22150%22 y=%22100%22 font-size=%2220%22 text-anchor=%22middle%22 alignment-baseline=%22middle%22 fill=%22white%22>Abstract Image</text></svg>'">
         </div>
         <div class="right">
             <div class="container">
-                <h1 class="h">Log in</h1>
-                <form action="{{ url_for('login') }}" method="POST">
+                <h1 class="h">User Login</h1>
+                {% if error %}
+                <div class="error-message">
+                    {{ error }}
+                </div>
+                {% endif %}
+                <form action="{{ url_for('login_user') }}" method="POST">
                     <label for="email" class="la">Email Address</label>
                     <input type="email" id="email" name="email" placeholder="Email Address" required>
-
                     <label for="password" class="la">Password</label>
                     <div class="to">
-                        <input type="password" id="password" name="password" placeholder="Password" required>
-                        <img src="{{ url_for('static', filename='images/eye-close.png') }}" alt="Show Password" id="eyeicon">
+                        <input type="password" style="width:100%" id="password" name="password" placeholder="Password" required>
+                        <img src="{{ url_for('static', filename='images/eye-close.png') }}" alt="Show Password"  id="eyeicon" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2220%22 height=%2220%22><circle cx=%2210%22 cy=%2210%22 r=%227%22 stroke=%22%23777%22 stroke-width=%222%22 fill=%22none%22 /><circle cx=%2210%22 cy=%2210%22 r=%223%22 fill=%22%23777%22 /></svg>'">
                     </div>
-
-                    <button type="submit">Log in</button>
+                    <button type="submit">Login</button>
                 </form>
-
                 <h1 class="he">--OR--</h1>
-                <h2 id="no_account">Don't have an account? <a href="{{ url_for('register') }}">Sign up</a></h2>
+                <div class="links">
+                    <h2 id="no_account">Don't have an account? <a href="{{ url_for('register_user') }}">Register</a></h2>
+                    <a href="{{ url_for('login_engineer') }}">Login as an Engineer</a>
+                </div>
             </div>
         </div>
     </div>
     
-    <script src="{{ url_for('static', filename='js/logapp.js') }}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Password toggle functionality
+            const passwordInput = document.getElementById('password');
+            const eyeIcon = document.getElementById('eyeicon');
+            
+            eyeIcon.addEventListener('click', function() {
+                if (passwordInput.type === 'password') {
+                    passwordInput.type = 'text';
+                    eyeIcon.src = "{{ url_for('static', filename='images/eye-open.png') }}";
+                    eyeIcon.onerror = function() {
+                        this.src = 'data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2220%22 height=%2220%22><circle cx=%2210%22 cy=%2210%22 r=%227%22 stroke=%22%23777%22 stroke-width=%222%22 fill=%22none%22 /><ellipse cx=%2210%22 cy=%2210%22 rx=%226%22 ry=%223%22 fill=%22%23777%22 /></svg>';
+                    };
+                } else {
+                    passwordInput.type = 'password';
+                    eyeIcon.src = "{{ url_for('static', filename='images/eye-close.png') }}";
+                    eyeIcon.onerror = function() {
+                        this.src = 'data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2220%22 height=%2220%22><circle cx=%2210%22 cy=%2210%22 r=%227%22 stroke=%22%23777%22 stroke-width=%222%22 fill=%22none%22 /><circle cx=%2210%22 cy=%2210%22 r=%223%22 fill=%22%23777%22 /></svg>';
+                    };
+                }
+            });
+        });
+    </script>
 </body>
 </html>

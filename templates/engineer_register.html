@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Engineer Registration Portal</title>
+    <style>
+        /* Base and Reset Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+            color: #333;
+        }
+
+        /* Container Styles */
+        .registration-container {
+            width: 100%;
+            max-width: 1200px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header Styles */
+        .registration-header {
+            background: linear-gradient(to right, #1e3c72, #2a5298);
+            color: white;
+            padding: 30px 40px;
+            text-align: center;
+        }
+
+        .registration-header h1 {
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .registration-header p {
+            font-size: 16px;
+            opacity: 0.8;
+        }
+
+        /* Form Container */
+        .form-container {
+            padding: 40px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        /* Form Section Styles */
+        .form-section {
+            margin-bottom: 30px;
+        }
+
+        .form-section h2 {
+            font-size: 22px;
+            color: #1e3c72;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eaecf3;
+        }
+
+        /* Form Group Styles */
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #666;
+            font-weight: 500;
+        }
+
+        .input-group {
+            position: relative;
+        }
+
+        .input-group input,
+        .input-group select,
+        .input-group textarea {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: border 0.3s, box-shadow 0.3s;
+        }
+
+        .input-group input:focus,
+        .input-group select:focus,
+        .input-group textarea:focus {
+            outline: none;
+            border-color: #2a5298;
+            box-shadow: 0 0 0 3px rgba(42, 82, 152, 0.1);
+        }
+
+        /* Password Toggle Style */
+        .toggle-password {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #888;
+            background: none;
+            border: none;
+            font-size: 16px;
+        }
+
+        /* File Upload Styles */
+        .file-upload {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .file-upload-btn {
+            padding: 15px;
+            background: #f5f7fa;
+            border: 1px dashed #cbd5e1;
+            border-radius: 6px;
+            color: #64748b;
+            font-size: 14px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 10px;
+        }
+
+        .file-upload-btn:hover {
+            background: #edf2f7;
+            border-color: #2a5298;
+            color: #2a5298;
+        }
+
+        .file-upload input[type="file"] {
+            display: none;
+        }
+
+        .file-info {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+            color: #64748b;
+            padding: 10px;
+            background: #f8fafc;
+            border-radius: 6px;
+            display: none;
+        }
+
+        .file-info i {
+            margin-right: 8px;
+        }
+
+        /* Form Action Buttons */
+        .form-actions {
+            display: flex;
+            justify-content: flex-end;
+            padding: 20px 40px 40px;
+            gap: 15px;
+        }
+
+        .form-actions button {
+            padding: 14px 24px;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .reset-btn {
+            background: white;
+            border: 1px solid #ddd;
+            color: #666;
+        }
+
+        .reset-btn:hover {
+            background: #f9f9f9;
+            border-color: #ccc;
+        }
+
+        .submit-btn {
+            background: linear-gradient(to right, #1e3c72, #2a5298);
+            border: none;
+            color: white;
+        }
+
+        .submit-btn:hover {
+            background: linear-gradient(to right, #15325e, #1e4180);
+            box-shadow: 0 5px 15px rgba(42, 82, 152, 0.3);
+        }
+
+        /* Progress Bar */
+        .progress-container {
+            padding: 0 40px;
+            margin-bottom: 20px;
+        }
+
+        .progress-bar {
+            height: 6px;
+            background: #eaecf3;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress {
+            height: 100%;
+            background: linear-gradient(to right, #1e3c72, #2a5298);
+            width: 0;
+            transition: width 0.3s ease;
+        }
+
+        /* Required Field */
+        .required::after {
+            content: " *";
+            color: #e53e3e;
+        }
+
+        /* Validation Styles */
+        .input-group.error input {
+            border-color: #e53e3e;
+        }
+
+        .error-message {
+            font-size: 12px;
+            color: #e53e3e;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .input-group.error .error-message {
+            display: block;
+        }
+
+        /* Help Text */
+        .help-text {
+            font-size: 12px;
+            color: #718096;
+            margin-top: 5px;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .form-container {
+                grid-template-columns: 1fr;
+                padding: 20px;
+            }
+
+            .form-actions {
+                flex-direction: column;
+                padding: 20px;
+            }
+
+            .form-actions button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="registration-container">
+        <!-- Header -->
+        <div class="registration-header">
+            <h1>Engineer Registration</h1>
+            <p>Join our network of professional engineers and unlock new opportunities</p>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress" id="progressBar"></div>
+            </div>
+        </div>
+
+        <!-- Form -->
+        <form id="engineerRegForm"   action="{{ url_for('register_engineer') }}" method="post" enctype="multipart/form-data">
+            <div class="form-container">
+                <!-- Personal Information Section -->
+                <div class="form-section">
+                    <h2>Personal Information</h2>
+                    
+                    <div class="form-group">
+                        <label for="fullName" class="required">Full Name</label>
+                        <div class="input-group">
+                            <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required>
+                            <div class="error-message">Please enter your full name</div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email" class="required">Email Address</label>
+                        <div class="input-group">
+                            <input type="email" id="email" name="email" placeholder="your.name@example.com" required>
+                            <div class="error-message">Please enter a valid email address</div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password" class="required">Password</label>
+                        <div class="input-group">
+                            <input type="password" id="password" name="password" placeholder="Create a strong password" required>
+                            <button type="button" class="toggle-password" id="togglePassword">
+                                <i class="eye-icon">👁️</i>
+                            </button>
+                            <div class="error-message">Password must be at least 8 characters</div>
+                            <div class="help-text">Use at least 8 characters with a mix of letters, numbers and symbols</div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="confirmPassword" class="required">Confirm Password</label>
+                        <div class="input-group">
+                            <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password" required>
+                            <div class="error-message">Passwords do not match</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Education Section -->
+                <div class="form-section">
+                    <h2>Education</h2>
+                    
+                    <div class="form-group">
+                        <label for="collegeName" class="required">College/University Name</label>
+                        <div class="input-group">
+                            <input type="text" id="collegeName" name="collegeName" placeholder="Enter your college or university name" required>
+                            <div class="error-message">Please enter your college name</div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="degree" class="required">Degree</label>
+                        <div class="input-group">
+                            <select id="degree" name="degree" required>
+                                <option value="">Select your highest degree</option>
+                                <option value="bachelor">Bachelor's Degree</option>
+                                <option value="master">Master's Degree</option>
+                                <option value="phd">PhD</option>
+                                <option value="diploma">Diploma</option>
+                                <option value="associate">Associate Degree</option>
+                                <option value="other">Other</option>
+                            </select>
+                            <div class="error-message">Please select your degree</div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="fieldOfStudy">Field of Study</label>
+                        <div class="input-group">
+                            <input type="text" id="fieldOfStudy" name="fieldOfStudy" placeholder="e.g., Computer Science, Mechanical Engineering">
+                        </div>
+                    </div>
+                    
+                    <!-- <div class="form-group">
+                        <label for="graduationYear">Graduation Year</label>
+                        <div class="input-group">
+                            <input type="number" id="graduationYear" name="graduationYear" placeholder="YYYY" min="1950" max="2030">
+                            <div class="error-message">Please enter a valid year</div>
+                        </div>
+                    </div> -->
+                </div>
+
+                <!-- Professional Information Section -->
+                <div class="form-section">
+                    <h2>Professional Information</h2>
+                    
+                    <div class="form-group">
+                        <label for="experience" class="required">Years of Experience</label>
+                        <div class="input-group">
+                            <input type="number" id="experience" name="experience" placeholder="Enter number of years" min="0" max="50" required>
+                            <div class="error-message">Please enter valid experience (0-50 years)</div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="projectCount" class="required">Number of Projects</label>
+                        <div class="input-group">
+                            <input type="number" id="projectCount" name="projectCount" placeholder="Enter number of projects" min="0" required>
+                            <div class="error-message">Please enter number of projects</div>
+                        </div>
+                    </div>
+                    
+                    <!-- <div class="form-group">
+                        <label for="skills">Key Skills</label>
+                        <div class="input-group">
+                            <input type="text" id="skills" name="skills" placeholder="e.g., Java, Python, CAD, Circuit Design">
+                            <div class="help-text">Separate multiple skills with commas</div>
+                        </div>
+                    </div> -->
+                    
+                    <div class="form-group">
+                        <label for="resume" class="required">Resume/CV</label>
+                        <div class="file-upload">
+                            <label for="resume" class="file-upload-btn" id="resumeLabel">
+                                Click to upload your resume (PDF, DOC, DOCX)
+                            </label>
+                            <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" required>
+                            <div class="file-info" id="fileInfo">
+                                <i>📄</i> <span id="fileName">No file selected</span>
+                            </div>
+                            <div class="error-message" id="fileError">Please upload your resume</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Location Section -->
+                <div class="form-section">
+                    <h2>Location</h2>
+                    
+                    <div class="form-group">
+                        <label for="country" class="required">Country</label>
+                        <div class="input-group">
+                            <select id="country" name="country" required>
+                                <option value="">Select your country</option>
+                                <option value="US">United States</option>
+                                <option value="CA">Canada</option>
+                                <option value="UK">United Kingdom</option>
+                                <option value="AU">Australia</option>
+                                <option value="IN">India</option>
+                                <option value="DE">Germany</option>
+                                <option value="JP">Japan</option>
+                                <option value="FR">France</option>
+                                <option value="BR">Brazil</option>
+                                <option value="ZA">South Africa</option>
+                                <option value="other">Other</option>
+                            </select>
+                            <div class="error-message">Please select your country</div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="city" class="required">City</label>
+                        <div class="input-group">
+                            <input type="text" id="city" name="city" placeholder="Enter your city">
+                        </div>
+                    </div>
+                    
+                    <!-- <div class="form-group">
+                        <label for="state">State/Province</label>
+                        <div class="input-group">
+                            <input type="text" id="state" name="state" placeholder="Enter your state or province">
+                        </div>
+                    </div> -->
+                    
+                    <!-- <div class="form-group">
+                        <label for="relocate">Willing to Relocate</label>
+                        <div class="input-group">
+                            <select id="relocate" name="relocate">
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                                <option value="remote">Remote Work Only</option>
+                            </select>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+
+            <!-- Form Actions -->
+                <div class="form-actions">
+                <button type="button" class="reset-btn" id="resetBtn">Reset Form</button>
+                <button type="submit" class="submit-btn">Create Account</button>
+            </div>
+            
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Form elements
+            const form = document.getElementById('engineerRegForm');
+            const fullName = document.getElementById('fullName');
+            const email = document.getElementById('email');
+            const password = document.getElementById('password');
+            const confirmPassword = document.getElementById('confirmPassword');
+            const collegeName = document.getElementById('collegeName');
+            const degree = document.getElementById('degree');
+            const experience = document.getElementById('experience');
+            const projectCount = document.getElementById('projectCount');
+            const resumeInput = document.getElementById('resume');
+            const resumeLabel = document.getElementById('resumeLabel');
+            const fileInfo = document.getElementById('fileInfo');
+            const fileName = document.getElementById('fileName');
+            const fileError = document.getElementById('fileError');
+            const country = document.getElementById('country');
+            const resetBtn = document.getElementById('resetBtn');
+            const progressBar = document.getElementById('progressBar');
+            const togglePasswordBtn = document.getElementById('togglePassword');
+            const city=document.getElementById('city')
+            // All required inputs for progress calculation
+            const requiredInputs = [
+                fullName, email, password, confirmPassword,
+                collegeName, degree, experience, projectCount,
+                resumeInput, country
+            ];
+            
+            // Function to toggle password visibility
+            togglePasswordBtn.addEventListener('click', function() {
+                if (password.type === 'password') {
+                    password.type = 'text';
+                    togglePasswordBtn.innerHTML = '<i class="eye-icon">👁️‍🗨️</i>'; // Changed icon
+                } else {
+                    password.type = 'password';
+                    togglePasswordBtn.innerHTML = '<i class="eye-icon">👁️</i>'; // Original icon
+                }
+            });
+            
+            // Handle file upload
+            resumeInput.addEventListener('change', function() {
+                if (this.files && this.files[0]) {
+                    const file = this.files[0];
+                    // Check file type
+                    const validTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+                    if (!validTypes.includes(file.type)) {
+                        fileError.textContent = 'Please upload PDF, DOC, or DOCX file';
+                        fileError.style.display = 'block';
+                        resumeInput.value = '';
+                        fileInfo.style.display = 'none';
+                        return;
+                    }
+                    
+                    // Check file size (max 5MB)
+                    if (file.size > 5 * 1024 * 1024) {
+                        fileError.textContent = 'File size must be less than 5MB';
+                        fileError.style.display = 'block';
+                        resumeInput.value = '';
+                        fileInfo.style.display = 'none';
+                        return;
+                    }
+                    
+                    // Update file info display
+                    fileName.textContent = file.name;
+                    fileInfo.style.display = 'flex';
+                    fileError.style.display = 'none';
+                    resumeLabel.textContent = 'Change file';
+                } else {
+                    // Reset if no file selected
+                    fileInfo.style.display = 'none';
+                    resumeLabel.textContent = 'Click to upload your resume (PDF, DOC, DOCX)';
+                }
+                
+                updateProgress();
+            });
+            
+            // Function to update progress bar
+            function updateProgress() {
+                let filled = 0;
+                requiredInputs.forEach(input => {
+                    if (input.tagName.toLowerCase() === 'select') {
+                        if (input.value) filled++;
+                    } else if (input.type === 'file') {
+                        if (input.files && input.files[0]) filled++;
+                    } else {
+                        if (input.value.trim()) filled++;
+                    }
+                });
+                
+                const progress = (filled / requiredInputs.length) * 100;
+                progressBar.style.width = `${progress}%`;
+            }
+            
+            // Add event listeners to all inputs for progress update
+            requiredInputs.forEach(input => {
+                input.addEventListener('input', updateProgress);
+                input.addEventListener('change', updateProgress);
+            });
+            
+            // Reset button functionality
+            resetBtn.addEventListener('click', function() {
+                if (confirm('Are you sure you want to reset the form? All your entered data will be lost.')) {
+                    form.reset();
+                    fileInfo.style.display = 'none';
+                    resumeLabel.textContent = 'Click to upload your resume (PDF, DOC, DOCX)';
+                    progressBar.style.width = '0';
+                    
+                    // Clear error messages
+                    document.querySelectorAll('.input-group').forEach(group => {
+                        group.classList.remove('error');
+                    });
+                }
+            });
+            
+            // Form validation
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+                let isValid = true;
+                
+                // Validate fullName
+                if (!fullName.value.trim()) {
+                    setError(fullName, 'Please enter your full name');
+                    isValid = false;
+                } else {
+                    clearError(fullName);
+                }
+                
+                // Validate email
+                const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+                if (!email.value.trim() || !emailRegex.test(email.value)) {
+                    setError(email, 'Please enter a valid email address');
+                    isValid = false;
+                } else {
+                    clearError(email);
+                }
+                
+                // Validate password
+                if (password.value.length < 8) {
+                    setError(password, 'Password must be at least 8 characters');
+                    isValid = false;
+                } else {
+                    clearError(password);
+                }
+                
+                // Validate confirm password
+                if (confirmPassword.value !== password.value) {
+                    setError(confirmPassword, 'Passwords do not match');
+                    isValid = false;
+                } else {
+                    clearError(confirmPassword);
+                }
+                
+                // Validate college name
+                if (!collegeName.value.trim()) {
+                    setError(collegeName, 'Please enter your college name');
+                    isValid = false;
+                } else {
+                    clearError(collegeName);
+                }
+                
+                // Validate degree
+                if (!degree.value) {
+                    setError(degree, 'Please select your degree');
+                    isValid = false;
+                } else {
+                    clearError(degree);
+                }
+                
+                // Validate experience
+                if (experience.value === '' || isNaN(experience.value) || experience.value < 0) {
+                    setError(experience, 'Please enter valid experience (0-50 years)');
+                    isValid = false;
+                } else {
+                    clearError(experience);
+                }
+                
+                // Validate project count
+                if (projectCount.value === '' || isNaN(projectCount.value) || projectCount.value < 0) {
+                    setError(projectCount, 'Please enter number of projects');
+                    isValid = false;
+                } else {
+                    clearError(projectCount);
+                }
+                
+                // Validate resume
+                if (!resumeInput.files || !resumeInput.files[0]) {
+                    fileError.style.display = 'block';
+                    isValid = false;
+                } else {
+                    fileError.style.display = 'none';
+                }
+                
+                // Validate country
+                if (!country.value) {
+                    setError(country, 'Please select your country');
+                    isValid = false;
+                } else {
+                    clearError(country);
+                }
+                if (!city.value.trim()) {
+                    setError(city, 'Please enter your city');
+                    isValid = false;
+                } else {
+                    clearError(city);
+                }
+                
+                if (isValid) {
+                    alert('Registration successful! Your engineering profile is now being reviewed.');
+                    // In a real application, you would submit the form data to the server here
+                    form.submit();
+                }
+            });
+            
+            // Helper functions for validation
+            function setError(input, message) {
+                const formGroup = input.closest('.input-group');
+                formGroup.classList.add('error');
+                const errorElement = formGroup.querySelector('.error-message');
+                if (errorElement) {
+                    errorElement.textContent = message;
+                }
+            }
+            
+            function clearError(input) {
+                const formGroup = input.closest('.input-group');
+                formGroup.classList.remove('error');
+            }
+            document.getElementById("engineerRegForm").addEventListener("submit", function (e) {
+                console.log('Form submission triggered');
+            // THIS WILL BLOCK FORM SUBMISSION unless manually sent via fetch/ajax
+    // validation or custom logic
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,283 +1,694 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="initial-scale=1, width=device-width" />
+<html lang="en">
 
-    <link rel="stylesheet" href="{{url_for('static',filename='css/global.css')}}" />
-    <link rel="stylesheet" href="{{url_for('static',filename='css/s-c-h-e-m-e.css')}}" />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;1,600;1,700;1,900&display=swap"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Sansita Swashed:wght@800&display=swap"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Encode Sans SC:wght@400;500&display=swap"
-    />
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Government Housing Schemes | BuildDream</title>
 
-    <style>
-      @font-face {
-        font-family: "Telegraf";
-        src: url("./public/PPTelegraf-Regular.otf");
-        font-weight: 400;
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800&display=swap"
+    rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+  <style>
+    :root {
+      --primary: #2c6e49;
+      --secondary: #4c956c;
+      --accent: #ffc145;
+      --background: #f8f9fa;
+      --text: #2f2f2f;
+      --white: #ffffff;
+      --light-gray: #e9ecef;
+      --gray: #6c757d;
+      --shadow: rgba(0, 0, 0, 0.05);
+      --border-radius: 10px;
+      --border-radius-sm: 6px;
+      --transition: all 0.3s ease;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: var(--text);
+      background-color: var(--background);
+      line-height: 1.6;
+    }
+
+    /* Header Styles */
+    .header {
+      background-color: var(--white);
+      box-shadow: 0 2px 10px var(--shadow);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .navigation {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo img {
+      height: 40px;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+    }
+
+    .nav-links .list {
+      position: relative;
+    }
+
+    .nav-links .link {
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 500;
+      font-size: 1rem;
+      transition: var(--transition);
+      padding: 0.5rem 0;
+      position: relative;
+    }
+
+    .nav-links .link:after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background-color: var(--accent);
+      transition: var(--transition);
+    }
+
+    .nav-links .link:hover {
+      color: var(--primary);
+    }
+
+    .nav-links .link:hover:after,
+    .nav-links .link.active:after {
+      width: 100%;
+    }
+
+    .nav-links .link.active {
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--text);
+    }
+    
+
+    /* Main Content */
+    .main-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+    }
+
+    .page-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2.2rem;
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    .page-title:after {
+      content: '';
+      position: absolute;
+      width: 50%;
+      height: 4px;
+      background-color: var(--accent);
+      bottom: -10px;
+      left: 0;
+      border-radius: 2px;
+    }
+
+    .schemes-container {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .scheme-card {
+      background-color: var(--white);
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: 0 5px 15px var(--shadow);
+      transition: var(--transition);
+      border-left: 4px solid var(--primary);
+    }
+
+    .scheme-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .scheme-header {
+      padding: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .scheme-header:hover {
+      background-color: rgba(44, 110, 73, 0.05);
+    }
+
+    .scheme-title {
+      font-weight: 600;
+      font-size: 1.2rem;
+      color: var(--primary);
+    }
+
+    .scheme-icon {
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--light-gray);
+      border-radius: 50%;
+      transition: var(--transition);
+    }
+
+    .scheme-icon i {
+      transition: var(--transition);
+      color: var(--gray);
+    }
+
+    .scheme-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease;
+      padding: 0 1.5rem;
+    }
+
+    .scheme-content-inner {
+      padding-bottom: 1.5rem;
+      border-top: 1px solid var(--light-gray);
+      padding-top: 1.5rem;
+      line-height: 1.8;
+    }
+
+    .scheme-card.active .scheme-icon {
+      background-color: var(--primary);
+    }
+
+    .scheme-card.active .scheme-icon i {
+      color: var(--white);
+      transform: rotate(180deg);
+    }
+
+    /* CTA Section */
+    .cta-section {
+      margin-top: 3rem;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      border-radius: var(--border-radius);
+      padding: 3rem;
+      color: var(--white);
+      text-align: center;
+    }
+
+    .cta-title {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
+
+    .cta-text {
+      margin-bottom: 2rem;
+      font-size: 1.1rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-button {
+      background-color: var(--accent);
+      color: var(--text);
+      border: none;
+      padding: 0.8rem 2rem;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: var(--border-radius-sm);
+      cursor: pointer;
+      transition: var(--transition);
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .cta-button:hover {
+      background-color: #ffb21d;
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Footer */
+    .footer {
+      background-color: var(--primary);
+      color: var(--white);
+      padding: 3rem 2rem;
+      margin-top: 4rem;
+    }
+
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+
+    .footer-logo img {
+      height: 40px;
+      margin-bottom: 1rem;
+    }
+
+    .footer-title {
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    .footer-title:after {
+      content: '';
+      position: absolute;
+      width: 40px;
+      height: 3px;
+      background-color: var(--accent);
+      bottom: -8px;
+      left: 0;
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 0.8rem;
+    }
+
+    .footer-links a {
+      color: var(--white);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .footer-links a:hover {
+      color: var(--accent);
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .social-icon {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      transition: var(--transition);
+    }
+
+    .social-icon:hover {
+      background-color: var(--accent);
+      transform: translateY(-3px);
+    }
+
+    .copyright {
+      text-align: center;
+      padding-top: 2rem;
+      margin-top: 3rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+      .navigation {
+        padding: 1rem;
       }
-    </style>
-  </head>
-  <body>
-    <div class="scheme">
-      <div class="scheme">
-        <header class="header">
-          <nav class="navc">
-              <div class="logo">
-                  <img src="{{url_for('static',filename='public\6569d003ebc8904744f138c8-aiicon-removebg-preview 1.png')}}" alt="">
-              </div>
-              <ul>
-                  <li class="list"><a href="{{url_for('home')}}" class="link">Home</a></li>
-                  <li class="list"><a href="{{url_for('calculator')}}" class="link">Calculator</a></li>
-                  <li class="list"><a href="{{url_for('bidsphere')}}" class="link">Bidsphere</a></li>
-                  <li class="list"><a href="{{url_for('schemes')}}" class="link">Schemes</a></li>
-                  <li class="list"><a href="{{url_for('engineers')}}" class="link">Engineers</a></li>
-                  <li class="list"><a href="{{url_for('profile')}}" class="link">My Profile</a></li>
-              </ul>
-          </nav>
-      </header>
-      <section class="scheme-inner">
-        <div class="frame-parent1">
-          <div class="frame-wrapper">
-            <div class="government-housing-schemes-in-parent">
-              <div class="government-housing-schemes">
-                Government Housing Schemes in India:
-              </div>
-              <div class="accordian-frame">
-                <div class="accordian11">
-                  <div class="headliue-and-ico9">
-                    <i class="header9"
-                      >Tamil Nadu Slum Clearance Board (TNSCB)</i
-                    >
-                    <div class="headliue-and-ico-inner5">
-                      <div class="ellipse-parent4">
-                        <div class="frame-child9"></div>
-                        <img
-                          class="frame-child10"
-                          loading="lazy"
-                          alt=""
-                          src="{{url_for('static',filename='public\Vector 1.svg')}}"
-                        />
-                        <p class="tamil-nadu-housing9">
-                          Tamil Nadu Housing Board Scheme:- Recently, the government
-                          of Tamil Nadu has implemented several programmes that are
-                          aimed at assisting the state’s citizens. A programme with
-                          the working title Tamil Nadu Housing Board Scheme was
-                          initiated by the state government. About 894 plots have been
-                          distributed by the Tamil Nadu Housing Board in the city of
-                          Trichy. The land parcels can be found in a variety of
-                          locations across the city. The TNHB Scheme conducted the
-                          auction for the plots using an online platform. In the
-                          following paragraphs, we will discuss the advantages of the
-                          plan as well as its primary goals. In addition, we will also
-                          acquire knowledge regarding the application process and the
-                          documents that are necessary for participation in the
-                          scheme.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  <img class="accordian-child6" alt="" />
-                </div>
-              </div>
-            </div>
-          </div>
-          <button class="accordian12">
-            <div class="headliue-and-ico10">
-              <i class="header10">Tamil Nadu Housing Board (TNHB) </i>
-              <div class="headliue-and-ico-inner6">
-                <div class="ellipse-parent5">
-                  <div class="frame-child11"></div>
-                  <img
-                    class="frame-child12"
-                    alt=""
-                    src="{{url_for('static',filename='public\Vector 1.svg')}}"
-                  />
-                </div>
-              </div>
-            </div>
-            <img class="accordian-child7" alt="" />
 
-            <div class="tamil-nadu-housing10">
-              Tamil Nadu Housing Board Scheme:- Recently, the government of
-              Tamil Nadu has implemented several programmes that are aimed at
-              assisting the state’s citizens. A programme with the working title
-              Tamil Nadu Housing Board Scheme was initiated by the state
-              government. About 894 plots have been distributed by the Tamil
-              Nadu Housing Board in the city of Trichy. The land parcels can be
-              found in a variety of locations across the city. The TNHB
-              Scheme conducted the auction for the plots using an online
-              platform. In the following paragraphs, we will discuss the
-              advantages of the plan as well as its primary goals. In addition,
-              we will also acquire knowledge regarding the application process
-              and the documents that are necessary for participation in the
-              scheme.
-            </div>
-          </button>
-          <div class="accordian13">
-            <div class="headliue-and-ico11">
-              <i class="header11">Solar Rooftop Capital Incentive Scheme </i>
-              <div class="headliue-and-ico-inner7">
-                <div class="ellipse-parent6">
-                  <div class="frame-child13"></div>
-                  <img
-                    class="frame-child14"
-                    alt=""
-                    src="{{url_for('static',filename='public\Vector 1.svg')}}"
-                  />
-                </div>
-              </div>
-            </div>
-            <img class="accordian-child8" alt="" />
+      .nav-links {
+        position: fixed;
+        top: 70px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 70px);
+        background-color: var(--white);
+        flex-direction: column;
+        align-items: center;
+        padding: 2rem;
+        transition: var(--transition);
+        box-shadow: 0 5px 15px var(--shadow);
+        gap: 1.5rem;
+      }
 
-            <div class="tamil-nadu-housing11">
-              Tamil Nadu Housing Board Scheme:- Recently, the government of
-              Tamil Nadu has implemented several programmes that are aimed at
-              assisting the state’s citizens. A programme with the working title
-              Tamil Nadu Housing Board Scheme was initiated by the state
-              government. About 894 plots have been distributed by the Tamil
-              Nadu Housing Board in the city of Trichy. The land parcels can be
-              found in a variety of locations across the city. The TNHB
-              Scheme conducted the auction for the plots using an online
-              platform. In the following paragraphs, we will discuss the
-              advantages of the plan as well as its primary goals. In addition,
-              we will also acquire knowledge regarding the application process
-              and the documents that are necessary for participation in the
-              scheme.
-            </div>
-          </div>
-          <button class="accordian14">
-            <div class="headliue-and-ico12">
-              <i class="header12">Pradhan Mantri Awas Yojana (PMAY)</i>
-              <div class="headliue-and-ico-inner8">
-                <div class="ellipse-parent7">
-                  <div class="frame-child15"></div>
-                  <img
-                    class="frame-child16"
-                    alt=""
-                    src="{{url_for('static',filename='public\Vector 1.svg')}}"
-                  />
-                </div>
-              </div>
-            </div>
-            <img class="accordian-child9" alt="" />
+      .nav-links.active {
+        left: 0;
+      }
 
-            <div class="tamil-nadu-housing12">
-              Tamil Nadu Housing Board Scheme:- Recently, the government of
-              Tamil Nadu has implemented several programmes that are aimed at
-              assisting the state’s citizens. A programme with the working title
-              Tamil Nadu Housing Board Scheme was initiated by the state
-              government. About 894 plots have been distributed by the Tamil
-              Nadu Housing Board in the city of Trichy. The land parcels can be
-              found in a variety of locations across the city. The TNHB
-              Scheme conducted the auction for the plots using an online
-              platform. In the following paragraphs, we will discuss the
-              advantages of the plan as well as its primary goals. In addition,
-              we will also acquire knowledge regarding the application process
-              and the documents that are necessary for participation in the
-              scheme.
-            </div>
-          </button>
-          <button class="frame-button">
-            <div class="accordian15">
-              <div class="headliue-and-ico13">
-                <i class="header13">Rajiv Gandhi Awas Yojana Housing Scheme</i>
-                <div class="headliue-and-ico-inner9">
-                  <div class="ellipse-parent8">
-                    <div class="frame-child17"></div>
-                    <img
-                      class="frame-child18"
-                      alt=""
-                      src="{{url_for('static',filename='public\Vector 1.svg')}}"
-                    />
-                  </div>
-                </div>
-              </div>
-              <img class="accordian-child10" alt="" />
+      .menu-toggle {
+        display: block;
+      }
 
-              <div class="tamil-nadu-housing13">
-                Tamil Nadu Housing Board Scheme:- Recently, the government of
-                Tamil Nadu has implemented several programmes that are aimed at
-                assisting the state’s citizens. A programme with the working
-                title Tamil Nadu Housing Board Scheme was initiated by the state
-                government. About 894 plots have been distributed by the Tamil
-                Nadu Housing Board in the city of Trichy. The land parcels can
-                be found in a variety of locations across the city. The TNHB
-                Scheme conducted the auction for the plots using an online
-                platform. In the following paragraphs, we will discuss the
-                advantages of the plan as well as its primary goals. In
-                addition, we will also acquire knowledge regarding the
-                application process and the documents that are necessary for
-                participation in the scheme.
-              </div>
-            </div>
-            <div class="line-div"></div>
-          </button>
-          <div class="accordian16">
-            <div class="headliue-and-ico14">
-              <i class="header14">Pradhan Mantri Gramin Awas Yojana</i>
-              <div class="headliue-and-ico-inner10">
-                <div class="ellipse-parent9">
-                  <div class="frame-child19"></div>
-                  <img
-                    class="frame-child20"
-                    alt=""
-                    src="{{url_for('static',filename='public\Vector 1.svg')}}"
-                  />
-                </div>
-              </div>
-            </div>
-            <img class="accordian-child11" alt="" />
+      .main-container {
+        padding: 2rem 1rem;
+      }
 
-            <div class="tamil-nadu-housing14">
-              Tamil Nadu Housing Board Scheme:- Recently, the government of
-              Tamil Nadu has implemented several programmes that are aimed at
-              assisting the state’s citizens. A programme with the working title
-              Tamil Nadu Housing Board Scheme was initiated by the state
-              government. About 894 plots have been distributed by the Tamil
-              Nadu Housing Board in the city of Trichy. The land parcels can be
-              found in a variety of locations across the city. The TNHB
-              Scheme conducted the auction for the plots using an online
-              platform. In the following paragraphs, we will discuss the
-              advantages of the plan as well as its primary goals. In addition,
-              we will also acquire knowledge regarding the application process
-              and the documents that are necessary for participation in the
-              scheme.
-            </div>
+      .page-title {
+        font-size: 1.8rem;
+      }
+
+      .cta-section {
+        padding: 2rem 1rem;
+      }
+
+      .cta-title {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="header">
+    <nav class="navigation">
+      <div class="logo">
+        <img src="{{url_for('static',filename='public/6569d003ebc8904744f138c8-aiicon-removebg-preview 1.png')}}"
+          alt="BuildDream Logo">
+      </div>
+      <ul class="nav-links">
+        <li class="list"><a href="{{ url_for('home', user_id=user['_id']) }}" class="link">Home</a></li>
+        <li class="list"><a href="{{ url_for('calculator', user_id=user['_id']) }}" class="link">Calculator</a></li>
+        <li class="list"><a href="{{ url_for('bidsphere', user_id=user['_id']) }}" id="c_r" class="link">Bidsphere</a></li>
+        <li class="list"><a href="{{ url_for('schemes', user_id=user['_id']) }}" class="link">Schemes</a></li>
+        <li class="list"><a href="{{ url_for('profile', user_id=user['_id']) }}" class=link>My Profile</a></li>
+      </ul>
+      <button class="menu-toggle">
+        <i class="fas fa-bars"></i>
+      </button>
+    </nav>
+  </header>
+
+  <main class="main-container">
+    <h1 class="page-title">Government Housing Schemes in India</h1>
+
+    <div class="schemes-container">
+      <!-- Scheme 1 -->
+      <div class="scheme-card">
+        <div class="scheme-header">
+          <h2 class="scheme-title">Tamil Nadu Slum Clearance Board (TNSCB)</h2>
+          <div class="scheme-icon">
+            <i class="fas fa-chevron-down"></i>
           </div>
         </div>
-      </section>
+        <div class="scheme-content">
+          <div class="scheme-content-inner">
+            <p>Tamil Nadu Housing Board Scheme:- Recently, the government of Tamil Nadu has implemented several
+              programmes that are aimed at assisting the state's citizens. A programme with the working title Tamil Nadu
+              Housing Board Scheme was initiated by the state government. About 894 plots have been distributed by the
+              Tamil Nadu Housing Board in the city of Trichy. The land parcels can be found in a variety of locations
+              across the city.</p>
+            <p>The TNHB Scheme conducted the auction for the plots using an online platform. In the following
+              paragraphs, we will discuss the advantages of the plan as well as its primary goals. In addition, we will
+              also acquire knowledge regarding the application process and the documents that are necessary for
+              participation in the scheme.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scheme 2 -->
+      <div class="scheme-card">
+        <div class="scheme-header">
+          <h2 class="scheme-title">Tamil Nadu Housing Board (TNHB)</h2>
+          <div class="scheme-icon">
+            <i class="fas fa-chevron-down"></i>
+          </div>
+        </div>
+        <div class="scheme-content">
+          <div class="scheme-content-inner">
+            <p>Tamil Nadu Housing Board Scheme:- Recently, the government of Tamil Nadu has implemented several
+              programmes that are aimed at assisting the state's citizens. A programme with the working title Tamil Nadu
+              Housing Board Scheme was initiated by the state government. About 894 plots have been distributed by the
+              Tamil Nadu Housing Board in the city of Trichy. The land parcels can be found in a variety of locations
+              across the city.</p>
+            <p>The TNHB Scheme conducted the auction for the plots using an online platform. In the following
+              paragraphs, we will discuss the advantages of the plan as well as its primary goals. In addition, we will
+              also acquire knowledge regarding the application process and the documents that are necessary for
+              participation in the scheme.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scheme 3 -->
+      <div class="scheme-card">
+        <div class="scheme-header">
+          <h2 class="scheme-title">Solar Rooftop Capital Incentive Scheme</h2>
+          <div class="scheme-icon">
+            <i class="fas fa-chevron-down"></i>
+          </div>
+        </div>
+        <div class="scheme-content">
+          <div class="scheme-content-inner">
+            <p>Tamil Nadu Housing Board Scheme:- Recently, the government of Tamil Nadu has implemented several
+              programmes that are aimed at assisting the state's citizens. A programme with the working title Tamil Nadu
+              Housing Board Scheme was initiated by the state government. About 894 plots have been distributed by the
+              Tamil Nadu Housing Board in the city of Trichy. The land parcels can be found in a variety of locations
+              across the city.</p>
+            <p>The TNHB Scheme conducted the auction for the plots using an online platform. In the following
+              paragraphs, we will discuss the advantages of the plan as well as its primary goals. In addition, we will
+              also acquire knowledge regarding the application process and the documents that are necessary for
+              participation in the scheme.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scheme 4 -->
+      <div class="scheme-card">
+        <div class="scheme-header">
+          <h2 class="scheme-title">Pradhan Mantri Awas Yojana (PMAY)</h2>
+          <div class="scheme-icon">
+            <i class="fas fa-chevron-down"></i>
+          </div>
+        </div>
+        <div class="scheme-content">
+          <div class="scheme-content-inner">
+            <p>Tamil Nadu Housing Board Scheme:- Recently, the government of Tamil Nadu has implemented several
+              programmes that are aimed at assisting the state's citizens. A programme with the working title Tamil Nadu
+              Housing Board Scheme was initiated by the state government. About 894 plots have been distributed by the
+              Tamil Nadu Housing Board in the city of Trichy. The land parcels can be found in a variety of locations
+              across the city.</p>
+            <p>The TNHB Scheme conducted the auction for the plots using an online platform. In the following
+              paragraphs, we will discuss the advantages of the plan as well as its primary goals. In addition, we will
+              also acquire knowledge regarding the application process and the documents that are necessary for
+              participation in the scheme.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scheme 5 -->
+      <div class="scheme-card">
+        <div class="scheme-header">
+          <h2 class="scheme-title">Rajiv Gandhi Awas Yojana Housing Scheme</h2>
+          <div class="scheme-icon">
+            <i class="fas fa-chevron-down"></i>
+          </div>
+        </div>
+        <div class="scheme-content">
+          <div class="scheme-content-inner">
+            <p>Tamil Nadu Housing Board Scheme:- Recently, the government of Tamil Nadu has implemented several
+              programmes that are aimed at assisting the state's citizens. A programme with the working title Tamil Nadu
+              Housing Board Scheme was initiated by the state government. About 894 plots have been distributed by the
+              Tamil Nadu Housing Board in the city of Trichy. The land parcels can be found in a variety of locations
+              across the city.</p>
+            <p>The TNHB Scheme conducted the auction for the plots using an online platform. In the following
+              paragraphs, we will discuss the advantages of the plan as well as its primary goals. In addition, we will
+              also acquire knowledge regarding the application process and the documents that are necessary for
+              participation in the scheme.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scheme 6 -->
+      <div class="scheme-card">
+        <div class="scheme-header">
+          <h2 class="scheme-title">Pradhan Mantri Gramin Awas Yojana</h2>
+          <div class="scheme-icon">
+            <i class="fas fa-chevron-down"></i>
+          </div>
+        </div>
+        <div class="scheme-content">
+          <div class="scheme-content-inner">
+            <p>Tamil Nadu Housing Board Scheme:- Recently, the government of Tamil Nadu has implemented several
+              programmes that are aimed at assisting the state's citizens. A programme with the working title Tamil Nadu
+              Housing Board Scheme was initiated by the state government. About 894 plots have been distributed by the
+              Tamil Nadu Housing Board in the city of Trichy. The land parcels can be found in a variety of locations
+              across the city.</p>
+            <p>The TNHB Scheme conducted the auction for the plots using an online platform. In the following
+              paragraphs, we will discuss the advantages of the plan as well as its primary goals. In addition, we will
+              also acquire knowledge regarding the application process and the documents that are necessary for
+              participation in the scheme.</p>
+          </div>
+        </div>
+      </div>
     </div>
-    <script>
-    
-  const accordions = document.querySelectorAll('.accordian-frame');
 
-  accordions.forEach(acc => {
-    acc.addEventListener('click', function() {
-      // Toggle the active class on the clicked accordion
-      this.classList.toggle('active');
+    <!-- Call to Action Section -->
+    <div class="cta-section">
+      <h2 class="cta-title">Find Your Dream Home Today</h2>
+      <p class="cta-text">Discover which government housing scheme is right for you and start your journey towards home
+        ownership. Our experts are ready to guide you through the application process.</p>
+      <a href="#" class="cta-button">Get Started</a>
+    </div>
+  </main>
 
-      // Toggle the display of the content
-      const content = this.querySelector('.accordian-child6');
-      if (content.style.maxHeight) {
-        content.style.maxHeight = null;
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-col">
+        <div class="footer-logo">
+          <img src="{{url_for('static',filename='public/6569d003ebc8904744f138c8-aiicon-removebg-preview 1.png')}}"
+            alt="BuildDream Logo">
+        </div>
+        <p>Building Dreams, One Click at a Time!</p>
+        <div class="social-icons">
+          <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h3 class="footer-title">Quick Links</h3>
+        <ul class="footer-links">
+          <li class="list"><a href="{{ url_for('home', user_id=user['_id']) }}" class="link">Home</a></li>
+          <li class="list"><a href="{{ url_for('calculator', user_id=user['_id']) }}" class="link">Calculator</a></li>
+          <li class="list"><a href="{{ url_for('bidsphere', user_id=user['_id']) }}" class="link">Bidsphere</a></li>
+          <li class="list"><a href="{{ url_for('engineerlist', project_id=project['_id'], user_id=user['_id']) }}" class="link">Engineers</a></li>
+          <li class="list"><a href="{{ url_for('schemes', user_id=user['_id']) }}" class="link">Schemes</a></li>
+          <li class="list"><a href="{{ url_for('profile', user_id=user['_id']) }}" class="link">My Profile</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3 class="footer-title">Contact Us</h3>
+        <ul class="footer-links">
+          <li><i class="fas fa-map-marker-alt"></i> 123 Main Street, Chennai, Tamil Nadu</li>
+          <li><i class="fas fa-phone"></i> +91 1234567890</li>
+          <li><i class="fas fa-envelope"></i> info@builddream.com</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="copyright">
+      <p>&copy; 2025 BuildDream. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+      const icon = menuToggle.querySelector('i');
+      if (navLinks.classList.contains('active')) {
+        icon.classList.remove('fa-bars');
+        icon.classList.add('fa-times');
       } else {
-        // Set the max-height to the scroll height of the content to show it
-        content.style.maxHeight = content.scrollHeight + 'px';
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars');
       }
     });
-  });
-</script>
-    
-  </body>
-  
+
+    // Accordion functionality
+    const schemeCards = document.querySelectorAll('.scheme-card');
+
+    schemeCards.forEach(card => {
+      const header = card.querySelector('.scheme-header');
+      const content = card.querySelector('.scheme-content');
+
+      header.addEventListener('click', () => {
+        // Check if this card is already active
+        const isActive = card.classList.contains('active');
+
+        // Close all scheme cards
+        schemeCards.forEach(c => {
+          c.classList.remove('active');
+          c.querySelector('.scheme-content').style.maxHeight = null;
+        });
+
+        // If the clicked card wasn't active, open it
+        if (!isActive) {
+          card.classList.add('active');
+          content.style.maxHeight = content.scrollHeight + 'px';
+        }
+      });
+    });
+
+    // Open first scheme by default
+    if (schemeCards.length > 0) {
+      schemeCards[0].classList.add('active');
+      const firstContent = schemeCards[0].querySelector('.scheme-content');
+      firstContent.style.maxHeight = firstContent.scrollHeight + 'px';
+    }
+    let globalVar = localStorage.getItem("globalVar");
+
+
+    let contentDiv = document.getElementById("c_r");
+
+    // Dynamically set links based on globalVar, user_id, and project_id
+    const userId = "{{ user['_id'] }}";
+
+    const projectId = "{{ project['_id'] if project else '' }}"; // Pass project ID dynamically from Flask
+
+    if (globalVar === "true" && projectId) {
+        contentDiv.innerHTML = `<a href="{{ url_for('engineerlist', user_id=user['_id'], project_id=project['_id']) }}" class="link">Engineers</a>`;
+    } else if (!projectId) {
+        contentDiv.innerHTML = `<p>No active projects found.</p>`;
+    } else {
+        contentDiv.innerHTML = `<a href="{{ url_for('bidsphere', user_id=user['_id']) }}" class="link">Bidsphere</a>`;
+    }
+  </script>
+</body>
+
 </html>
