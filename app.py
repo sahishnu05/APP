@@ -29,7 +29,6 @@ try:
     with open('location_columns.json', 'r') as f:
         locations = json.load(f)
 except FileNotFoundError:
-    # Default locations if file not found
     locations = ["1st Phase JP Nagar", "Indira Nagar", "Whitefield", "Electronic City", 
                 "HSR Layout", "Koramangala", "Bannerghatta Road", "Marathahalli"]
     with open('location_columns.json', 'w') as f:
@@ -37,9 +36,7 @@ except FileNotFoundError:
 
 # ML Model Implementation
 def predict_price(location, sqft, bath, bhk):
-    """Predict house price based on location, square feet, bathrooms and BHK"""
     try:
-        # Try to load the model if it exists
         lr_clf = joblib.load('bengaluru_house_price_model.pkl')
         
         # Find the location index
@@ -56,21 +53,18 @@ def predict_price(location, sqft, bath, bhk):
         # Predict price
         return int(lr_clf.predict([x])[0])
     except:
-        # Fallback prediction if model loading fails
-        # Simple formula based on the data patterns
-        sqft_price = 5000  # Base price per sqft in rupees
+        sqft_price = 5000 
         if location in ["Indira Nagar", "Koramangala", "HSR Layout"]:
-            sqft_price = 12000  # Premium areas
+            sqft_price = 12000  
         elif location in ["Whitefield", "Electronic City", "Marathahalli"]:
-            sqft_price = 7000  # Mid-range areas
+            sqft_price = 7000 
             
-        base_price = (float(sqft) * sqft_price) / 100000  # Convert to lakhs
-        bhk_factor = 1.0 + (0.1 * (int(bhk) - 1))  # 10% increase per additional bedroom
-        bath_factor = 1.0 + (0.05 * (int(bath) - int(bhk)))  # Premium for extra bathrooms
+        base_price = (float(sqft) * sqft_price) / 100000 
+        bhk_factor = 1.0 + (0.1 * (int(bhk) - 1)) 
+        bath_factor = 1.0 + (0.05 * (int(bath) - int(bhk))) 
         
         return round(base_price * bhk_factor * max(1.0, bath_factor), 2)
 
-# Bidding Algorithm
 def compute_score(experience, num_projects, ratings, bid_price,
                   max_experience, max_projects, P_user,
                   w_e=0.30, w_p=0.20, w_b=0.25, w_r=0.25, C=5, epsilon=1e-6):
@@ -100,9 +94,7 @@ def compute_score(experience, num_projects, ratings, bid_price,
     return final_score
 
 def get_recommendations(material_type, application):
-    """Get recommendations for a specific material type and application."""
     try:
-        # Load appropriate dataset and determine cost column based on material type
         cost_column = "Cost (per unit)"  # Default cost column name
         if "cement" in material_type.lower():
             filename = "cement.csv"
@@ -471,10 +463,8 @@ def engineer_dashboard(engineer_id):
         if not engineer:
             return redirect(url_for('login_engineer'))
         
-        # Fetch open projects
         open_projects = list(Projects.find({'status': 'open'}))
         
-        # Fetch user information for each project
         projects_users = []
         projects_with_users = []
         for project in open_projects:
@@ -530,10 +520,8 @@ def calculator(user_id=None):
         try:
             user = Users.find_one({'_id': ObjectId(user_id)})
         except:
-            # Invalid user ID format or user not found
             pass
-            
-    # Default project for context in template
+
     project = None
     if user:
         project = Projects.find_one({'user_id': ObjectId(user_id)})
@@ -567,17 +555,13 @@ def calculator(user_id=None):
 
 # Helper function to rank engineers for a project
 def rank_engineers_for_project(project, bids):
-    """Rank engineers based on their bids and experience"""
     try:
-        # Find max experience and projects among all engineers
         all_engineers = list(Engineers.find())
         max_experience = max([eng.get('years_experience', 0) for eng in all_engineers]) if all_engineers else 10
         max_projects = max([eng.get('projects_completed', 0) for eng in all_engineers]) if all_engineers else 20
-        
-        # User's desired budget
+
         P_user = float(project.get('desired_budget', 0))
         
-        # Calculate scores for each bid
         ranked_bids = []
         for bid in bids:
             engineer_id = bid.get('engineer_id')
@@ -589,7 +573,6 @@ def rank_engineers_for_project(project, bids):
                 ratings = engineer.get('ratings', [])
                 bid_price = float(bid.get('bid_amount', 0))
                 
-                # Calculate score using the bidding algorithm
                 score = compute_score(
                     experience=experience,
                     num_projects=num_projects,
@@ -599,8 +582,7 @@ def rank_engineers_for_project(project, bids):
                     max_projects=max_projects,
                     P_user=P_user
                 )
-                
-                # Format for display
+
                 ranked_bids.append({
                     '_id': bid.get('_id'),
                     'engineer_id': engineer_id,
@@ -610,7 +592,6 @@ def rank_engineers_for_project(project, bids):
                     'score_percentage': int(score * 100)
                 })
         
-        # Sort by score (highest first)
         return sorted(ranked_bids, key=lambda x: x['score'], reverse=True)
         
     except Exception as e:
@@ -619,25 +600,21 @@ def rank_engineers_for_project(project, bids):
 
 @app.route('/bidsphere/<user_id>', methods=['GET', 'POST'])
 def bidsphere(user_id):
-    # Verify user exists
     user = Users.find_one({'_id': ObjectId(user_id)})
     if not user:
         return redirect(url_for('login_user'))
     
-    # Find any existing project for this user or create placeholder
     project = Projects.find_one({'user_id': ObjectId(user_id)})
     if not project:
         project = {'_id': 'placeholder'}
     
     if request.method == 'POST':
         try:
-            # Get form data
             estimated_price = float(request.form['estimated_price'])
             area = float(request.form['area'])
             district = request.form['district']
             instructions = request.form.get('instructions', '')
             
-            # Handle file uploads
             property_document = request.files['property_document']
             property_doc_path = None
             if property_document:
@@ -696,9 +673,7 @@ def engineerlist(project_id, user_id):
         return redirect(url_for('login_user'))
     
     try:
-        # Handle the placeholder case - find if user has any projects
         if project_id == 'placeholder':
-            # Check if user has any projects
             user_projects = list(Projects.find({'user_id': ObjectId(user_id)}))
             if not user_projects:
                 # No projects yet, show empty engineer list
@@ -799,9 +774,7 @@ def engineerlist(project_id, user_id):
 
 @app.route('/mark_project_complete/<project_id>/<user_id>', methods=['POST'])
 def mark_project_complete(project_id, user_id):
-    """Mark a project as completed"""
     try:
-        # Update project status to completed
         Projects.update_one(
             {'_id': ObjectId(project_id)},
             {'$set': {'status': 'completed'}}
@@ -818,14 +791,12 @@ def rate_engineer(project_id, engineer_id, user_id):
         rating = int(request.form['rating'])
         if rating < 1 or rating > 5:
             return "Invalid rating", 400
-            
-        # Update project with rating
+        
         Projects.update_one(
             {'_id': ObjectId(project_id)},
             {'$set': {'rating': rating}}
         )
         
-        # Add rating to engineer's ratings array
         Engineers.update_one(
             {'_id': ObjectId(engineer_id)},
             {'$push': {'ratings': rating}}
@@ -838,9 +809,7 @@ def rate_engineer(project_id, engineer_id, user_id):
 
 @app.route('/accept_engineer/<project_id>/<engineer_id>/<user_id>', methods=['POST'])
 def accept_engineer(project_id, engineer_id, user_id):
-    """Accept an engineer's bid for a project"""
     try:
-        # Update project with selected engineer
         Projects.update_one(
             {'_id': ObjectId(project_id)},
             {'$set': {'selected_engineer_id': ObjectId(engineer_id), 'status': 'awarded'}}
@@ -853,7 +822,6 @@ def accept_engineer(project_id, engineer_id, user_id):
 @app.route('/accept_bid/<project_id>/<engineer_id>/<user_id>', methods=['POST'])
 def accept_bid(project_id, engineer_id, user_id):
     try:
-        # Update project with selected engineer
         Projects.update_one(
             {'_id': ObjectId(project_id)},
             {'$set': {
@@ -1010,6 +978,32 @@ def mark_project_complete_engineer(project_id, engineer_id):
 def logout_engineer():
     return redirect(url_for('login_engineer'))
 
+@app.route('/project-bids/<project_id>')
+def get_project_bids(project_id):
+    """API endpoint to get anonymous bids for a project"""
+    try:
+        # Verify the project exists
+        project = Projects.find_one({'_id': ObjectId(project_id)})
+        if not project:
+            return jsonify({'error': 'Project not found'}), 404
+            
+        # Get all bids for this project
+        bids = list(Bids.find({'project_id': ObjectId(project_id)}))
+        
+        # Return an anonymous version of the bids (just the amounts)
+        anonymous_bids = [
+            {'amount': bid.get('bid_amount', 0)} 
+            for bid in bids
+        ]
+        
+        return jsonify({
+            'project_id': str(project_id),
+            'bid_count': len(anonymous_bids),
+            'bids': anonymous_bids
+        })
+    except Exception as e:
+        print(f"Error fetching project bids: {str(e)}")
+        return jsonify({'error': str(e)}), 500
 
 if __name__ == '__main__':
     app.run(debug=True)

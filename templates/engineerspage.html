@@ -1,109 +1,3 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Engineer Dashboard</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/engineerpage.css') }}">
-</head>
-<body>
-    <header>
-        <h1>Engineer Dashboard</h1>
-        <nav>
-            <ul>
-                <li><a href="{{ url_for('engineer_dashboard', engineer_id=engineer._id) }}" class="active">Available Projects</a></li>
-                <li><a href="{{ url_for('allotted_projects', engineer_id=engineer._id) }}">Allotted Projects</a></li>
-                <li><a href="{{ url_for('engineer_profile', engineer_id=engineer._id) }}">Profile</a></li>
-                <li><a href="{{ url_for('logout_engineer') }}">Logout</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <main>
-        <div class="container">
-            <div class="user-list-container">
-                <h2>Available Projects</h2>
-                <div class="user-list">
-                    {% for project in open_projects %}
-                    <div class="user-item" onclick="showUserDetails('{{ project._id }}')">
-                        <span class="user-name">{{ project.location }}</span>
-                        <span class="user-price">₹{{ project.desired_budget }}</span>
-                    </div>
-                    {% endfor %}
-                    {% if not open_projects %}
-                    <p class="no-projects">No open projects available</p>
-                    {% endif %}
-                </div>
-            </div>
-
-            <div class="user-details-container">
-                <h2>Project Details</h2>
-                <div class="user-details">
-                    <p><strong>Location:</strong> <span id="projectLocation">-</span></p>
-                    <p><strong>Budget:</strong> <span id="projectBudget">₹0</span></p>
-                    <div id="additionalInfo">
-                        <p>Additional information will appear here.</p>
-                    </div>
-
-                    <form id="bidForm" action="{{ url_for('submit_engineer_bid', project_id='placeholder', engineer_id=engineer._id) }}" method="POST">
-                        <div class="form-group">
-                            <label for="priceInput">Your Bid Amount:</label>
-                            <input type="number" id="priceInput" name="price" min="0" step="0.01" required>
-                        </div>
-                        <div class="form-actions">
-                            <button type="button" onclick="closeDetails()">Close</button>
-                            <button type="submit">Submit Bid</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </main>
-
-    <script>
-        function showUserDetails(projectId) {
-            // Update the form action with the selected project ID
-            document.getElementById('bidForm').action = "{{ url_for('submit_engineer_bid', project_id='PROJECT_ID', engineer_id=engineer._id) }}".replace('PROJECT_ID', projectId);
-            
-            // Get project details from the server
-            fetch(`/project/${projectId}`)
-                .then(response => response.json())
-                .then(data => {
-                    document.getElementById('projectLocation').textContent = data.location || '-';
-                    document.getElementById('projectBudget').textContent = `₹${data.desired_budget || 0}`;
-                    
-                    // Show additional information
-                    let additionalInfo = `
-                        <p><strong>Area:</strong> ${data.construction_area || 0} sq.m</p>
-                        <p><strong>Project Title:</strong> ${data.project_title || '-'}</p>
-                    `;
-                    
-                    if (data.description) {
-                        additionalInfo += `<p><strong>Description:</strong> ${data.description}</p>`;
-                    }
-                    
-                    document.getElementById('additionalInfo').innerHTML = additionalInfo;
-                    
-                    // Show the user details container
-                    document.querySelector('.user-details-container').style.display = 'block';
-                })
-                .catch(error => {
-                    console.error('Error fetching project details:', error);
-                });
-        }
-        
-        function closeDetails() {
-            document.querySelector('.user-details-container').style.display = 'none';
-        }
-        
-        // Hide user details container initially
-        document.addEventListener('DOMContentLoaded', function() {
-            document.querySelector('.user-details-container').style.display = 'none';
-        });
-    </script>
-</body>
-</html> -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -131,6 +25,28 @@
             padding: 20px;
             text-align: center;
             color: #6c757d;
+        }
+        .other-bids {
+            margin-top: 20px;
+            border-top: 1px solid #dee2e6;
+            padding-top: 15px;
+        }
+        .bid-pill {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 20px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            background-color: #e9ecef;
+            font-size: 14px;
+        }
+        .nav-tabs .nav-link {
+            border: none;
+            border-bottom: 2px solid transparent;
+        }
+        .nav-tabs .nav-link.active {
+            border-bottom: 2px solid #0d6efd;
+            background-color: transparent;
         }
     </style>
 </head>
@@ -204,36 +120,68 @@
                         <h5 class="mb-0">Project Details</h5>
                     </div>
                     <div class="card-body">
-                        <div class="row mb-3">
-                            <div class="col-md-6">
-                                <p><strong>Location:</strong> <span id="projectLocation">-</span></p>
-                            </div>
-                            <div class="col-md-6">
-                                <p><strong>Budget:</strong> <span id="projectBudget">₹0</span></p>
-                            </div>
-                        </div>
+                        <!-- Navigation tabs for project details -->
+                        <ul class="nav nav-tabs mb-3" id="projectDetailTabs" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="details-tab" data-bs-toggle="tab" data-bs-target="#details" type="button" role="tab" aria-controls="details" aria-selected="true">
+                                    <i class="bi bi-info-circle me-1"></i>Details
+                                </button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="bids-tab" data-bs-toggle="tab" data-bs-target="#bids" type="button" role="tab" aria-controls="bids" aria-selected="false">
+                                    <i class="bi bi-cash-stack me-1"></i>Other Bids
+                                </button>
+                            </li>
+                        </ul>
                         
-                        <div id="additionalInfo" class="mb-4">
-                            <div class="alert alert-info">
-                                <i class="bi bi-info-circle me-2"></i>Select a project to view details
-                            </div>
-                        </div>
+                        <div class="tab-content" id="projectDetailTabsContent">
+                            <!-- Details Tab -->
+                            <div class="tab-pane fade show active" id="details" role="tabpanel" aria-labelledby="details-tab">
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <p><strong>Location:</strong> <span id="projectLocation">-</span></p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p><strong>Budget:</strong> <span id="projectBudget">₹0</span></p>
+                                    </div>
+                                </div>
+                                
+                                <div id="additionalInfo" class="mb-4">
+                                    <div class="alert alert-info">
+                                        <i class="bi bi-info-circle me-2"></i>Select a project to view details
+                                    </div>
+                                </div>
 
-                        <form id="bidForm" action="{{ url_for('submit_engineer_bid', project_id='placeholder', engineer_id=engineer._id) }}" method="POST">
-                            <div class="mb-3">
-                                <label for="priceInput" class="form-label">Your Bid Amount:</label>
-                                <div class="input-group">
-                                    <span class="input-group-text">₹</span>
-                                    <input type="number" class="form-control" id="priceInput" name="price" min="0" step="0.01" required>
+                                <form id="bidForm" action="{{ url_for('submit_engineer_bid', project_id='placeholder', engineer_id=engineer._id) }}" method="POST">
+                                    <div class="mb-3">
+                                        <label for="priceInput" class="form-label">Your Bid Amount:</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text">₹</span>
+                                            <input type="number" class="form-control" id="priceInput" name="price" min="0" step="0.01" required>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex justify-content-end gap-2">
+                                        <button type="button" class="btn btn-secondary" onclick="closeDetails()">Close</button>
+                                        <button type="submit" class="btn btn-primary">
+                                            <i class="bi bi-send me-1"></i>Submit Bid
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                            
+                            <!-- Other Bids Tab -->
+                            <div class="tab-pane fade" id="bids" role="tabpanel" aria-labelledby="bids-tab">
+                                <div id="otherBidsContainer" class="mb-3">
+                                    <div class="alert alert-info">
+                                        <i class="bi bi-info-circle me-2"></i>Select a project to view competing bids
+                                    </div>
+                                </div>
+                                
+                                <div class="d-flex justify-content-end">
+                                    <button type="button" class="btn btn-secondary" onclick="closeDetails()">Close</button>
                                 </div>
                             </div>
-                            <div class="d-flex justify-content-end gap-2">
-                                <button type="button" class="btn btn-secondary" onclick="closeDetails()">Close</button>
-                                <button type="submit" class="btn btn-primary">
-                                    <i class="bi bi-send me-1"></i>Submit Bid
-                                </button>
-                            </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -281,12 +229,74 @@
                     
                     // Show the user details container
                     document.querySelector('.user-details-container').style.display = 'block';
+                    
+                    // Get bids for this project
+                    fetchProjectBids(projectId);
                 })
                 .catch(error => {
                     console.error('Error fetching project details:', error);
                     document.getElementById('additionalInfo').innerHTML = `
                         <div class="alert alert-danger">
                             <i class="bi bi-exclamation-circle me-2"></i>Error loading project details
+                        </div>
+                    `;
+                });
+        }
+        
+        function fetchProjectBids(projectId) {
+            // Fetch bids for the selected project
+            fetch(`/project-bids/${projectId}`)
+                .then(response => response.json())
+                .then(data => {
+                    let bidsContent = '';
+                    
+                    if (data.bids && data.bids.length > 0) {
+                        // Sort bids from lowest to highest
+                        const sortedBids = [...data.bids].sort((a, b) => a.amount - b.amount);
+                        
+                        bidsContent = `
+                            <div class="card">
+                                <div class="card-body">
+                                    <h6 class="mb-3">
+                                        <i class="bi bi-people me-2"></i>
+                                        ${sortedBids.length} Other Engineer${sortedBids.length > 1 ? 's' : ''} Bidding
+                                    </h6>
+                                    <div class="bid-summary mb-3">
+                                        <p class="mb-1"><small class="text-muted">Bid Range:</small></p>
+                                        <div class="d-flex align-items-center">
+                                            <span class="badge bg-success me-2">₹${sortedBids[0].amount}</span>
+                                            <div class="progress flex-grow-1" style="height: 6px;">
+                                                <div class="progress-bar" role="progressbar" style="width: 100%"></div>
+                                            </div>
+                                            <span class="badge bg-danger ms-2">₹${sortedBids[sortedBids.length-1].amount}</span>
+                                        </div>
+                                    </div>
+                                    <div class="anonymous-bids">
+                                        <p class="mb-2"><small class="text-muted">Anonymous Bid Amounts:</small></p>
+                                        <div>
+                                            ${sortedBids.map(bid => `
+                                                <span class="bid-pill">₹${bid.amount}</span>
+                                            `).join('')}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                    } else {
+                        bidsContent = `
+                            <div class="alert alert-secondary">
+                                <i class="bi bi-info-circle me-2"></i>No other bids for this project yet
+                            </div>
+                        `;
+                    }
+                    
+                    document.getElementById('otherBidsContainer').innerHTML = bidsContent;
+                })
+                .catch(error => {
+                    console.error('Error fetching project bids:', error);
+                    document.getElementById('otherBidsContainer').innerHTML = `
+                        <div class="alert alert-danger">
+                            <i class="bi bi-exclamation-circle me-2"></i>Error loading bid information
                         </div>
                     `;
                 });
@@ -304,6 +314,16 @@
                     <i class="bi bi-info-circle me-2"></i>Select a project to view details
                 </div>
             `;
+            
+            // Reset bids tab content
+            document.getElementById('otherBidsContainer').innerHTML = `
+                <div class="alert alert-info">
+                    <i class="bi bi-info-circle me-2"></i>Select a project to view competing bids
+                </div>
+            `;
+            
+            // Switch back to details tab
+            document.getElementById('details-tab').click();
         }
     </script>
 </body>
